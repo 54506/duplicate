@@ -1,0 +1,41 @@
+<!-- Review Action Section -->
+<div class="product-info">
+    ...
+    {% if user.is_authenticated %}
+        {% if user_review %}
+            {% if can_edit_review %}
+                <button class="btn" onclick="document.getElementById('reviewForm').style.display='block'; this.style.display='none'">
+                    Edit Your Review
+                </button>
+                <p>You have {{ days_left }} days left to edit.</p>
+            {% else %}
+                <p>Already reviewed. 5-day window has passed.</p>
+            {% endif %}
+        {% else %}
+            <button class="btn" onclick="document.getElementById('reviewForm').style.display='block'; this.style.display='none'">
+                Write a Review
+            </button>
+        {% endif %}
+    {% else %}
+        <a href="{% url 'user_login' %}" class="btn">Login to Write a Review</a>
+    {% endif %}
+</div>
+
+<!-- Review Form (Pre-filled if editing) -->
+<div id="reviewForm" class="review-form">
+    <h2>{% if user_review %}Edit Your Review{% else %}Your Review{% endif %}</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="reviewer_name" value="{{ user_review.reviewer_name|default:user.username }}">
+
+        <!-- Star Rating Inputs -->
+        <div class="star-rating">
+            <input type="radio" id="star5" name="rating" value="5" {% if user_review.rating == 5 %}checked{% endif %} />
+            <label for="star5">★</label>
+            <!-- (Repeated for stars 4-1) -->
+        </div>
+
+        <textarea name="comment">{{ user_review.comment }}</textarea>
+        <button type="submit">{% if user_review %}Update Review{% else %}Submit Review{% endif %}</button>
+    </form>
+</div>
