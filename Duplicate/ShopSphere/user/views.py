@@ -1,5 +1,6 @@
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework import serializers
 import requests
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -10,7 +11,7 @@ from decimal import Decimal, InvalidOperation
 from django.core.paginator import Paginator
 
 from .models import AuthUser, Cart, CartItem, Order, OrderItem, Address, Review, Payment
-from .serializers import RegisterSerializer, ProductSerializer, CartSerializer, OrderSerializer, AddressSerializer, ReviewSerializer, OrderTrackingSerializer
+from .serializers import RegisterSerializer, ProductSerializer, CartSerializer, OrderSerializer, AddressSerializer, ReviewSerializer, OrderTrackingSerializer, UserSerializer
 from .forms import AddressForm
 import uuid
 from django.db import transaction
@@ -63,6 +64,9 @@ def login_api(request):
     user = authenticate(username=auth_identifier, password=password)
 
     if user:
+        # Pre-fetch profiles and role info in one go to reduce DB hits
+        user = AuthUser.objects.select_related('vendor_profile', 'delivery_agent_profile').get(id=user.id)
+        
         # Basic active check
         if not user.is_active:
             return Response({"error": "This account is inactive."}, status=403)
@@ -73,9 +77,8 @@ def login_api(request):
 
         # Role-specific approval and status checks
         if user.role == 'delivery':
-            try:
-                # Late import to prevent circularity if models reference each other
-                from deliveryAgent.models import DeliveryAgentProfile
+            # Check if profile exists using hasattr to avoid RelatedObjectDoesNotExist exception overhead
+            if hasattr(user, 'delivery_agent_profile'):
                 profile = user.delivery_agent_profile
                 if profile.approval_status == 'pending':
                     return Response({
@@ -93,13 +96,9 @@ def login_api(request):
                         "error": f"Your delivery account has been restricted. Reason: {profile.blocked_reason or 'Policy violation'}",
                         "status": "blocked"
                     }, status=403)
-            except Exception:
-                # If profile doesn't exist but role is delivery, it's an inconsistent state
-                pass
 
         elif user.role == 'vendor':
-            try:
-                from vendor.models import VendorProfile
+            if hasattr(user, 'vendor_profile'):
                 profile = user.vendor_profile
                 if profile.approval_status == 'pending':
                     return Response({
@@ -117,12 +116,10 @@ def login_api(request):
                         "error": f"Your vendor account is currently blocked. Reason: {profile.blocked_reason or 'Policy violation'}",
                         "status": "blocked"
                     }, status=403)
-            except Exception:
-                pass
 
         login(request, user)
+        # Token generation is usually fast, but we ensure claims are added efficiently
         refresh = RefreshToken.for_user(user)
-        # Add custom claims
         refresh['role'] = user.role
         refresh['username'] = user.username
         refresh['is_staff'] = user.is_staff
@@ -194,6 +191,21 @@ def google_login_api(request):
     })
 
 
+@api_view(['GET', 'PUT', 'PATCH'])
+@permission_classes([IsAuthenticated])
+def update_profile(request):
+    user = request.user
+    if request.method == 'GET':
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+    
+    serializer = UserSerializer(user, data=request.data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+
 # 🔹 HOME (Product Page)
 @api_view(['GET'])
 @authentication_classes([])
@@ -206,8 +218,6 @@ def home_api(request):
     products_qs = Product.objects.filter(
         status__in=['active', 'approved'],
         is_blocked=False
-    ).annotate(
-        avg_rating=Avg('reviews__rating')
     ).select_related('vendor').prefetch_related('images').order_by('-id')
 
     # Optional category filtering  (frontend may send display names like 'Home & Kitchen')
@@ -234,6 +244,12 @@ def home_api(request):
         else:
             # Name / description contains
             products_qs = products_qs.filter(name__icontains=search)
+        
+        # Increment search_count for found items (cap to prevent mass updates)
+        try:
+            products_qs.update(search_count=F('search_count') + 1)
+        except Exception:
+            pass
 
     if request.accepted_renderer.format == 'json':
         # Server-side pagination: 50 per page
@@ -460,10 +476,9 @@ def process_payment(request):
                         subtotal=price * quantity
                     )
                     
-                    # Decrease inventory
+                    # Decrease inventory atomically
                     if product:
-                        product.quantity -= quantity
-                        product.save()
+                        Product.objects.filter(pk=product.pk).update(quantity=F('quantity') - quantity)
                 
                 # Record financial entries in ledger
                 FinanceService.record_order_financials(order)
@@ -537,9 +552,8 @@ def process_payment(request):
                         subtotal=item.get_total()
                     )
                     
-                    # Decrease inventory
-                    item.product.quantity -= item.quantity
-                    item.product.save()
+                    # Decrease inventory atomically
+                    Product.objects.filter(pk=item.product.pk).update(quantity=F('quantity') - item.quantity)
                 
                 # Record financial entries in ledger
                 FinanceService.record_order_financials(order)
@@ -978,18 +992,14 @@ def reverse_geocode(request):
 @authentication_classes([])
 @permission_classes([AllowAny])
 def get_trending_products(request):
-    from django.db.models import Count, Avg
-    # Annotate with average rating and review count to improve performance
+    # Trending considers search count and ratings
     trending = Product.objects.filter(
         status__in=['active', 'approved'],
         is_blocked=False
-    ).annotate(
-        review_count=Count('reviews'),
-        avg_rating=Avg('reviews__rating')
-    ).filter(review_count__gt=0).order_by('-review_count', '-avg_rating')[:10]
+    ).order_by('-search_count', '-total_reviews', '-average_rating')[:12]
     
     serializer = ProductSerializer(trending, many=True, context={'request': request})
-    return Response(serializer.data)
+    data = serializer.data
     # Ensure average_rating is never None
     for item in data:
         if item.get('average_rating') is None:

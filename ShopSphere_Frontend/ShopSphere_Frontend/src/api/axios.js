@@ -285,6 +285,20 @@ export const logout = () => {
   localStorage.removeItem("refreshToken");
 };
 
+// UPDATE PROFILE
+export const updateProfile = async (profileData) => {
+  const token = localStorage.getItem("accessToken");
+  if (!token) throw new Error("No access token found");
+
+  const response = await axios.patch(`${API_BASE_URL}/update-profile`, profileData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+  return response.data;
+};
+
 // GET MY ORDERS (Protected)
 
 export const getMyOrders = async () => {

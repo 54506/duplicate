@@ -8,9 +8,10 @@ import {
   FaShoppingCart,
   FaWallet,
   FaChartLine,
-  FaHistory,
+  FaClock,
   FaFileInvoice,
-  FaPercentage
+  FaPercentage,
+  FaBoxOpen,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useTheme } from "../../context/ThemeContext";
@@ -90,71 +91,73 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="space-y-6 md:space-y-10 animate-in fade-in duration-700">
+    <div className="space-y-10 md:space-y-16 animate-in fade-in duration-700 font-['Outfit']">
       {/* HEADER SECTION */}
-      <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
         <div className="relative">
-          <h1 className={`text-3xl md:text-4xl font-black tracking-tighter flex items-center gap-4 italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-tr from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-indigo-500/20">
-              <FaStore size={22} />
+          <h1 className={`text-4xl md:text-5xl font-black tracking-tighter flex items-center gap-5 uppercase ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-tr from-orange-400 to-purple-600 rounded-[22px] flex items-center justify-center text-white shadow-2xl shadow-orange-500/20 rotate-3">
+              <FaStore size={26} />
             </div>
-            Store Overview
+            Command Center
           </h1>
-          <p className="text-[10px] font-black uppercase tracking-[4px] text-gray-500 mt-3 ml-1 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
-            Shop: {vendor?.shop_name || "Active"}
+          <p className="text-[11px] font-black uppercase tracking-[5px] text-orange-500 mt-4 ml-1 flex items-center gap-3">
+            <span className="w-2 h-2 bg-purple-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(168,85,247,0.5)]"></span>
+            Merchant: {vendor?.shop_name || "Nexus Node"}
           </p>
         </div>
-        <div className={`flex p-1 rounded-2xl md:rounded-[24px] border backdrop-blur-sm w-full md:w-auto transition-colors duration-300 ${isDarkMode ? 'bg-white/5 border-white/5' : 'bg-white border-slate-200 shadow-sm'}`}>
-          <button className={`flex-1 md:flex-none px-6 py-2.5 rounded-xl md:rounded-[18px] text-[10px] font-black uppercase tracking-[2px] shadow-lg transition-all ${isDarkMode ? 'bg-indigo-600 text-white shadow-indigo-900/40' : 'bg-slate-900 text-white shadow-slate-200'}`}>Current Status</button>
-          <button className={`flex-1 md:flex-none px-6 py-2.5 text-[10px] font-black uppercase tracking-[2px] transition-all ${isDarkMode ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-indigo-600'}`}>History</button>
+        <div className={`flex p-1.5 rounded-[24px] border backdrop-blur-xl w-full md:w-auto transition-all duration-500 ${isDarkMode ? 'bg-white/5 border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)]' : 'bg-white border-orange-100 shadow-xl shadow-orange-500/5'}`}>
+          <button className={`flex-1 md:flex-none px-8 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[3px] shadow-lg transition-all ${isDarkMode ? 'bg-orange-500 text-white shadow-orange-900/40' : 'bg-gray-950 text-white shadow-gray-200'}`}>Real-time Live</button>
         </div>
       </header>
 
       {/* KPI CLUSTER */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-        <KPICard title="My Balance" value={`₹${stats.available}`} icon={FaWallet} color="indigo" subtitle="Available now" isDarkMode={isDarkMode} />
-        <KPICard title="Pending" value={`₹${stats.uncleared}`} icon={FaHistory} color="amber" subtitle="Next payout" isDarkMode={isDarkMode} />
-        <KPICard title="Total Sales" value={`₹${stats.revenue}`} icon={FaChartLine} color="purple" subtitle="All-time" isDarkMode={isDarkMode} />
-        <KPICard title="Orders" value={stats.orders} icon={FaShoppingCart} color="emerald" subtitle="Completed" isDarkMode={isDarkMode} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <KPICard title="My Balance" value={`₹${stats.available}`} icon={FaWallet} color="orange" subtitle="Available now" isDarkMode={isDarkMode} />
+        <KPICard title="Pending" value={`₹${stats.uncleared}`} icon={FaClock} color="purple" subtitle="Next payout" isDarkMode={isDarkMode} />
+        <KPICard title="Total Sales" value={`₹${stats.revenue}`} icon={FaChartLine} color="indigo" subtitle="All-time resonance" isDarkMode={isDarkMode} />
+        <KPICard title="Orders" value={stats.orders} icon={FaShoppingCart} color="emerald" subtitle="Completed nodes" isDarkMode={isDarkMode} />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
         {/* GRAPH */}
-        <div className={`rounded-[32px] md:rounded-[48px] p-6 md:p-10 border shadow-2xl relative overflow-hidden group transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-white/5' : 'bg-white border-slate-100'}`}>
-          <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl opacity-30"></div>
+        <div className={`rounded-[48px] p-8 md:p-12 border shadow-2xl relative overflow-hidden group transition-all duration-500 lg:col-span-2 ${isDarkMode ? 'bg-[#0f172a]/80 border-white/5 backdrop-blur-xl shadow-orange-500/5' : 'bg-white border-orange-50/50 shadow-xl shadow-orange-500/5'}`}>
+          <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500/10 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl opacity-50"></div>
           <div className="relative">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 md:mb-10 gap-4">
               <div className="flex items-center gap-4">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${isDarkMode ? 'bg-indigo-500/10 text-indigo-400 border-indigo-500/10' : 'bg-indigo-50 text-indigo-600 border-indigo-100'}`}>
-                  <FaChartLine size={18} />
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition-all duration-500 ${isDarkMode ? 'bg-orange-500/10 text-orange-400 border-orange-500/20' : 'bg-orange-50 text-orange-600 border-orange-100'}`}>
+                  <FaChartLine size={22} />
                 </div>
-                <h3 className={`text-xl font-black tracking-tight italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Sales Growth</h3>
+                <h3 className={`text-2xl font-black tracking-tighter italic uppercase ${isDarkMode ? 'text-white' : 'text-gray-950'}`}>Market Trajectory</h3>
               </div>
-              <div className={`px-4 py-2 border rounded-full text-[9px] font-black uppercase tracking-widest ${isDarkMode ? 'bg-white/5 border-white/5 text-slate-500' : 'bg-slate-50 border-slate-100 text-slate-500'}`}>
-                Last 6 Months
+              <div className={`px-5 py-2.5 border rounded-2xl text-[10px] font-black uppercase tracking-[3px] ${isDarkMode ? 'bg-white/5 border-white/10 text-orange-500' : 'bg-orange-50 border-orange-100 text-orange-600'}`}>
+                Last 6 Cycles
               </div>
             </div>
-            <div className="h-[250px] md:h-[350px]">
+            <div className="h-[300px] md:h-[400px]">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={salesChart}>
                   <defs>
                     <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#6366f1" stopOpacity={0.2} />
-                      <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#f97316" stopOpacity={0.4} />
+                      <stop offset="95%" stopColor="#f97316" stopOpacity={0} />
                     </linearGradient>
                   </defs>
+                  <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 900, fill: isDarkMode ? '#475569' : '#94a3b8' }} dy={10} />
                   <Tooltip
                     contentStyle={{
                       background: isDarkMode ? '#0f172a' : '#fff',
-                      border: isDarkMode ? '1px solid rgba(255,255,255,0.05)' : '1px solid #e2e8f0',
-                      borderRadius: '16px',
-                      fontSize: '12px'
+                      border: 'none',
+                      borderRadius: '24px',
+                      boxShadow: '0 25px 50px -12px rgba(249, 115, 22, 0.2)',
+                      padding: '20px',
+                      fontFamily: 'Outfit'
                     }}
-                    itemStyle={{ color: isDarkMode ? '#fff' : '#1e293b', fontWeight: 'bold' }}
-                    cursor={{ stroke: '#6366f1', strokeWidth: 2 }}
+                    itemStyle={{ color: isDarkMode ? '#fff' : '#111827', fontWeight: '900' }}
+                    cursor={{ stroke: '#f97316', strokeWidth: 2 }}
                   />
-                  <Area type="monotone" dataKey="sales" stroke="#6366f1" strokeWidth={4} fillOpacity={1} fill="url(#colorSales)" />
+                  <Area type="monotone" dataKey="sales" stroke="#f97316" strokeWidth={5} fillOpacity={1} fill="url(#colorSales)" />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
@@ -162,24 +165,24 @@ export default function Dashboard() {
         </div>
 
         {/* RECENT ORDERS */}
-        <div className={`rounded-[32px] md:rounded-[48px] p-6 md:p-10 border shadow-2xl flex flex-col transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-white/5' : 'bg-white border-slate-100'}`}>
+        <div className={`rounded-[48px] p-8 md:p-10 border shadow-2xl flex flex-col transition-all duration-500 ${isDarkMode ? 'bg-[#0f172a]/80 border-white/5 backdrop-blur-xl' : 'bg-white border-orange-50/50 shadow-xl shadow-orange-500/5'}`}>
           <div className="flex items-center gap-4 mb-8 md:mb-10">
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${isDarkMode ? 'bg-purple-500/10 text-purple-400 border-purple-500/10' : 'bg-purple-50 text-purple-600 border-purple-100'}`}>
-              <FaShoppingCart size={18} />
+            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition-all duration-500 ${isDarkMode ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' : 'bg-purple-50 text-purple-600 border-purple-100'}`}>
+              <FaShoppingCart size={22} />
             </div>
-            <h3 className={`text-xl font-black tracking-tight italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Recent Activity</h3>
+            <h3 className={`text-2xl font-black tracking-tighter italic uppercase ${isDarkMode ? 'text-white' : 'text-gray-950'}`}>Active Stream</h3>
           </div>
 
-          <div className="flex-1 space-y-4">
+          <div className="flex-1 space-y-5 overflow-y-auto max-h-[450px] no-scrollbar pr-1">
             {recentOrders.length > 0 ? recentOrders.map((order, idx) => (
-              <div key={idx} className={`p-4 md:p-5 flex justify-between items-center border rounded-2xl md:rounded-3xl transition-all group overflow-hidden ${isDarkMode ? 'bg-white/5 border-transparent hover:bg-white/10 hover:border-indigo-500/20' : 'bg-slate-50 border-slate-100 hover:bg-white hover:border-indigo-200 shadow-sm hover:shadow-md'}`}>
+              <div key={idx} className={`p-5 flex justify-between items-center border rounded-[30px] transition-all duration-300 group ${isDarkMode ? 'bg-white/5 border-white/5 hover:border-orange-500/30' : 'bg-orange-50/50 border-orange-100 hover:bg-white hover:border-orange-200 shadow-sm'}`}>
                 <div className="min-w-0 flex-1 pr-3">
-                  <p className={`text-xs md:text-sm font-black tracking-tight italic uppercase truncate ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{order.id}</p>
-                  <p className="text-[8px] md:text-[9px] font-black text-gray-500 uppercase tracking-widest truncate">{order.name}</p>
+                  <p className={`text-xs font-black tracking-tight italic uppercase truncate ${isDarkMode ? 'text-white' : 'text-gray-950'}`}>#{order.order_number}</p>
+                  <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest truncate mt-1">{order.name}</p>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <p className="text-xs md:text-sm font-black text-indigo-500 tracking-tight">₹{order.amount}</p>
-                  <span className={`inline-block px-2 py-0.5 rounded-md text-[8px] font-black uppercase tracking-widest mt-1 ${order.status === 'received' ? 'bg-blue-500/10 text-blue-400' :
+                  <p className="text-sm font-black text-orange-500 tracking-tight italic">₹{order.amount}</p>
+                  <span className={`inline-block px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mt-1.5 ${order.status === 'received' ? 'bg-blue-500/10 text-blue-400' :
                     order.status === 'processing' ? 'bg-amber-500/10 text-amber-400' :
                       order.status === 'shipped' ? 'bg-purple-500/10 text-purple-400' :
                         'bg-emerald-500/10 text-emerald-400'
@@ -189,30 +192,32 @@ export default function Dashboard() {
                 </div>
               </div>
             )) : (
-              <div className="text-center py-10">
-                <p className="text-[10px] font-black uppercase text-gray-600 italic">No activity yet</p>
+              <div className="text-center py-12 opacity-30">
+                <FaBoxOpen size={40} className="mx-auto mb-4" />
+                <p className="text-[10px] font-black uppercase tracking-[3px] italic">No active nodes</p>
               </div>
             )}
           </div>
 
-          <button onClick={() => navigate('/vendororders')} className={`mt-8 w-full py-4 text-[10px] font-black uppercase tracking-[3px] rounded-2xl transition-all shadow-xl ${isDarkMode ? 'bg-indigo-600 text-white shadow-indigo-900/40 hover:bg-indigo-500' : 'bg-slate-900 text-white shadow-slate-200 hover:bg-indigo-600'}`}>
-            Show All Orders
+          <button onClick={() => navigate('/vendororders')} className={`mt-8 w-full py-5 text-[11px] font-black uppercase tracking-[4px] rounded-[28px] transition-all duration-500 shadow-2xl ${isDarkMode ? 'bg-orange-500 text-white shadow-orange-900/40 hover:bg-orange-400' : 'bg-gray-950 text-white hover:bg-orange-500 shadow-orange-200'}`}>
+            Audit All Requests
           </button>
         </div>
       </div>
 
       {/* FINANCIAL SUMMARY */}
-      <div className={`rounded-[32px] md:rounded-[48px] p-6 md:p-10 border shadow-2xl transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-white/5' : 'bg-white border-slate-100'}`}>
-        <div className="flex items-center gap-4 mb-10 md:mb-12">
-          <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/10' : 'bg-emerald-50 text-emerald-600 border-emerald-100'}`}>
-            <FaPercentage size={18} />
+      <div className={`rounded-[48px] p-8 md:p-12 border shadow-2xl transition-all duration-500 relative overflow-hidden ${isDarkMode ? 'bg-[#0f172a]/80 border-white/5 backdrop-blur-xl' : 'bg-white border-orange-50/50 shadow-xl shadow-orange-500/5'}`}>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-orange-500/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-50"></div>
+        <div className="flex items-center gap-4 mb-10 md:mb-12 relative z-10">
+          <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition-all duration-500 ${isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-emerald-50 text-emerald-600 border-emerald-100'}`}>
+            <FaPercentage size={22} />
           </div>
-          <h3 className={`text-xl font-black tracking-tight italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Money Summary</h3>
+          <h3 className={`text-2xl font-black tracking-tighter italic uppercase ${isDarkMode ? 'text-white' : 'text-gray-950'}`}>Liquidity Matrix</h3>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10">
-          <SettlementMetric label="Total Order Value" value={`₹${stats.totalGross}`} color={isDarkMode ? 'white' : 'slate'} isDarkMode={isDarkMode} />
-          <SettlementMetric label="Platform Fee" value={`−₹${stats.totalCommission}`} color="rose" isDarkMode={isDarkMode} />
-          <SettlementMetric label="Your Earnings" value={`₹${stats.totalNet}`} color="emerald" isDarkMode={isDarkMode} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 relative z-10">
+          <SettlementMetric label="Total Distribution" value={`₹${stats.totalGross}`} color={isDarkMode ? 'white' : 'gray'} isDarkMode={isDarkMode} />
+          <SettlementMetric label="Marketplace Fee" value={`−₹${stats.totalCommission}`} color="rose" isDarkMode={isDarkMode} />
+          <SettlementMetric label="Direct Earnings" value={`₹${stats.totalNet}`} color="emerald" isDarkMode={isDarkMode} />
         </div>
       </div>
     </div>
@@ -220,42 +225,53 @@ export default function Dashboard() {
 }
 
 function KPICard({ title, value, icon: Icon, color, subtitle, isDarkMode }) {
-  const colors = {
-    indigo: isDarkMode ? 'text-indigo-400 bg-indigo-500/10 border-indigo-500/10' : 'text-indigo-600 bg-indigo-50 border-indigo-100',
-    purple: isDarkMode ? 'text-purple-400 bg-purple-500/10 border-purple-500/10' : 'text-purple-600 bg-purple-50 border-purple-100',
-    emerald: isDarkMode ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/10' : 'text-emerald-600 bg-emerald-50 border-emerald-100',
-    amber: isDarkMode ? 'text-amber-400 bg-amber-500/10 border-amber-500/10' : 'text-amber-600 bg-amber-50 border-amber-100'
+  const themes = {
+    orange: isDarkMode ? 'bg-orange-500/10 text-orange-400 border-orange-500/20 shadow-orange-500/5' : 'bg-orange-50 text-orange-600 border-orange-100 shadow-orange-100',
+    purple: isDarkMode ? 'bg-purple-500/10 text-purple-400 border-purple-500/20 shadow-purple-500/5' : 'bg-purple-50 text-purple-600 border-purple-100 shadow-purple-100',
+    indigo: isDarkMode ? 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20 shadow-indigo-500/5' : 'bg-indigo-50 text-indigo-600 border-indigo-100 shadow-indigo-100',
+    emerald: isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 shadow-emerald-500/5' : 'bg-emerald-50 text-emerald-600 border-emerald-100 shadow-emerald-100'
+  };
+
+  const bgGradients = {
+    orange: 'from-orange-500 to-orange-600',
+    purple: 'from-purple-500 to-purple-600',
+    indigo: 'from-indigo-500 to-indigo-600',
+    emerald: 'from-emerald-500 to-emerald-600'
   };
 
   return (
-    <div className={`p-6 md:p-8 rounded-[32px] md:rounded-[40px] border shadow-2xl transition-all group relative overflow-hidden ${isDarkMode ? 'bg-[#1e293b]/50 border-white/5 hover:border-indigo-500/30' : 'bg-white border-slate-100 hover:border-indigo-200 hover:shadow-indigo-500/5'}`}>
-      <div className="flex justify-between items-start">
-        <div className={`p-3 md:p-4 rounded-2xl ${colors[color]} border group-hover:scale-110 transition-transform`}>
-          <Icon size={18} className="md:size-[20px]" />
+    <div className={`p-8 rounded-[48px] border-2 shadow-2xl transition-all duration-500 group relative overflow-hidden flex flex-col justify-between hover:scale-[1.02] ${isDarkMode ? 'bg-[#0f172a] border-white/5 hover:border-orange-500/30' : 'bg-white border-orange-50 hover:border-orange-200'}`}>
+      <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${bgGradients[color]} opacity-[0.03] rounded-full translate-x-1/2 -translate-y-1/2 transition-transform duration-700 group-hover:scale-150`}></div>
+      <div className="flex justify-between items-start mb-10 relative z-10">
+        <div className={`w-14 h-14 rounded-[22px] flex items-center justify-center text-white bg-gradient-to-br ${bgGradients[color]} shadow-xl transition-transform duration-500 group-hover:rotate-6`}>
+          <Icon size={24} />
         </div>
       </div>
-      <div className="mt-6 md:mt-8">
-        <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">{title}</p>
-        <p className={`text-2xl md:text-3xl font-black tracking-tighter truncate italic ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{value}</p>
-        <p className={`text-[8px] font-bold uppercase tracking-widest mt-1 italic ${isDarkMode ? 'text-slate-600' : 'text-slate-400'}`}>{subtitle}</p>
+      <div className="relative z-10">
+        <p className="text-[11px] font-black text-gray-500 uppercase tracking-[4px] mb-2 ml-1">{title}</p>
+        <p className={`text-3xl font-black tracking-tighter italic ${isDarkMode ? 'text-white' : 'text-gray-950'}`}>{value}</p>
+        <div className="mt-4 flex items-center gap-2">
+          <div className={`w-1.5 h-1.5 rounded-full bg-orange-500`}></div>
+          <p className="text-[9px] font-black uppercase tracking-widest text-gray-600">{subtitle}</p>
+        </div>
       </div>
     </div>
   );
 }
 
 function SettlementMetric({ label, value, color, isDarkMode }) {
-  const colorMap = {
+  const colors = {
     white: 'text-white',
-    slate: 'text-slate-900',
+    gray: 'text-gray-950',
     rose: 'text-rose-500',
-    emerald: 'text-emerald-500'
+    emerald: 'text-orange-500' // Using orange for emerald to match theme
   };
 
   return (
-    <div className={`space-y-3 p-6 md:p-8 rounded-[28px] md:rounded-[32px] border transition-all ${isDarkMode ? 'bg-white/5 border-white/5 hover:border-white/10' : 'bg-slate-50 border-slate-100 hover:bg-white hover:border-indigo-100 shadow-sm'}`}>
-      <p className="text-[10px] font-black text-gray-500 uppercase tracking-[3px] italic">{label}</p>
-      <p className={`text-3xl md:text-4xl font-black tracking-tighter ${colorMap[color]} truncate italic`}>{value}</p>
-      <div className={`w-12 h-1 rounded-full ${isDarkMode ? 'bg-white/10' : 'bg-slate-200'}`}></div>
+    <div className={`space-y-4 p-8 rounded-[40px] border-2 transition-all duration-500 ${isDarkMode ? 'bg-white/5 border-white/5 hover:border-orange-500/20' : 'bg-orange-50/50 border-orange-100 hover:bg-white hover:border-orange-200 shadow-sm'}`}>
+      <p className="text-[11px] font-black text-gray-500 uppercase tracking-[4px] italic">{label}</p>
+      <p className={`text-3xl md:text-4xl font-black tracking-tighter ${colors[color]} truncate italic`}>{value}</p>
+      <div className={`w-16 h-1.5 rounded-full ${isDarkMode ? 'bg-orange-500/20' : 'bg-orange-200/50'}`}></div>
     </div>
   );
 }

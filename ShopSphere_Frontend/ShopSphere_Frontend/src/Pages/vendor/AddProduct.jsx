@@ -103,7 +103,7 @@ export default function AddProduct() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 md:px-6 py-6 md:py-10">
+    <div className="max-w-4xl mx-auto px-4 md:px-6 py-6 md:py-10 font-['Outfit']">
       <header className="mb-8 md:mb-12">
         <h1 className={`text-3xl md:text-4xl font-black tracking-tighter flex items-center gap-4 italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
           <div className="w-10 h-10 md:w-12 md:h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-indigo-500/20">

@@ -1242,26 +1242,28 @@ function Orders() {
 
 
                             <div className="flex items-center gap-4">
-                              {item.user_review ? (
-                                item.user_review.can_edit_review ? (
+                              {status.label === 'Delivered' && (
+                                item.user_review ? (
+                                  item.user_review.can_edit_review ? (
+                                    <button
+                                      onClick={() => openReviewModal(item)}
+                                      className="px-4 py-2 bg-orange-50 text-orange-400 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gradient-to-r from-orange-400 to-purple-500 hover:text-white transition-all border border-orange-100 shadow-sm"
+                                    >
+                                      Alter the Review
+                                    </button>
+                                  ) : (
+                                    <span className="text-[9px] font-black text-gray-400 uppercase bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100 tracking-wider">
+                                      Review Closed
+                                    </span>
+                                  )
+                                ) : (
                                   <button
                                     onClick={() => openReviewModal(item)}
                                     className="px-4 py-2 bg-orange-50 text-orange-400 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gradient-to-r from-orange-400 to-purple-500 hover:text-white transition-all border border-orange-100 shadow-sm"
                                   >
-                                    Alter the Review
+                                    Write a Review
                                   </button>
-                                ) : (
-                                  <span className="text-[9px] font-black text-gray-400 uppercase bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100 tracking-wider">
-                                    Review Closed
-                                  </span>
                                 )
-                              ) : (
-                                <button
-                                  onClick={() => openReviewModal(item)}
-                                  className="px-4 py-2 bg-orange-50 text-orange-400 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gradient-to-r from-orange-400 to-purple-500 hover:text-white transition-all border border-orange-100 shadow-sm"
-                                >
-                                  Write a Review
-                                </button>
                               )}
                               <span className="font-black text-gray-900">
                                 ₹{(Number(item.product_price) * item.quantity).toFixed(2)}

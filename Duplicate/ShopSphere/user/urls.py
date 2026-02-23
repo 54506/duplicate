@@ -8,6 +8,7 @@ urlpatterns = [
     path('google_login', views.google_login_api, name='google_login'),
     path('register', views.register_api, name='register'),
     path('logout', views.logout_api, name='logout'),
+    path('update-profile', views.update_profile, name='update_profile'),
     path('api/reverse-geocode/', views.reverse_geocode, name='reverse_geocode'),
 
     # Shop / Product

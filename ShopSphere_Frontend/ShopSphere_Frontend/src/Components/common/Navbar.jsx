@@ -267,7 +267,6 @@ function Navbar() {
                                     <div className="absolute right-0 mt-3 w-60 bg-[#581c87] border border-white/10 rounded-2xl shadow-2xl py-2 z-50">
                                         <div className="px-5 py-4 border-b border-white/10"><p className="text-sm font-bold text-white">{user.username}</p><p className="text-xs text-orange-200">{user.email}</p></div>
                                         <Link to="/profile" className="flex items-center gap-3 px-4 py-2.5 text-sm text-orange-100 hover:bg-white/10">My Profile</Link>
-                                        <Link to="/profile/orders" className="flex items-center gap-3 px-4 py-2.5 text-sm text-orange-100 hover:bg-white/10">My Orders</Link>
                                         <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-rose-400 hover:bg-white/10 text-left">Log Out</button>
                                     </div>
                                 )}

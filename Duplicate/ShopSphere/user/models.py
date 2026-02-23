@@ -10,6 +10,7 @@ class AuthUser(AbstractUser):
     username = models.CharField(max_length=150, unique=False, db_index=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
     profile_image = models.ImageField(upload_to='profiles/', blank=True, null=True)
+    gender = models.CharField(max_length=10, blank=True, null=True)
 
     ROLE_CHOICES = [
         ('customer', 'Customer'),

@@ -93,7 +93,7 @@ export default function ProductList() {
   }
 
   return (
-    <div className="space-y-8 md:space-y-10">
+    <div className="space-y-8 md:space-y-10 font-['Outfit']">
       <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
           <h1 className={`text-3xl md:text-4xl font-black tracking-tighter flex items-center gap-4 italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>

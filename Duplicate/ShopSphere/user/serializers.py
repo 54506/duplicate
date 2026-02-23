@@ -16,6 +16,30 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AuthUser
+        fields = ['id', 'username', 'email', 'phone', 'gender', 'role', 'profile_image']
+        read_only_fields = ['id', 'email', 'role']
+
+    def validate_phone(self, value):
+        if value:
+            if not value.isdigit():
+                raise serializers.ValidationError("Phone number must contain only digits.")
+            if len(value) != 10:
+                raise serializers.ValidationError("Phone number must be exactly 10 digits.")
+        return value
+
+    def validate_username(self, value):
+        import re
+        # Allow letters and single spaces between words. No digits, no special chars, no double spaces.
+        if not re.match(r'^[a-zA-Z]+( [a-zA-Z]+)*$', value):
+            raise serializers.ValidationError("Name should only contain letters and single spaces. No digits or special characters allowed.")
+        if len(value) < 3:
+            raise serializers.ValidationError("Name must be at least 3 characters long.")
+        return value
+
+
 from django.urls import reverse
 
 class ProductImageSerializer(serializers.ModelSerializer):
@@ -45,7 +69,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'brand', 'description', 'category', 'price', 
             'quantity', 'images', 'image', 'image_urls', 'status', 
-            'is_blocked', 'created_at', 'vendor_name', 'average_rating'
+            'is_blocked', 'created_at', 'vendor_name', 'average_rating', 'total_reviews'
         ]
 
     def get_average_rating(self, obj):

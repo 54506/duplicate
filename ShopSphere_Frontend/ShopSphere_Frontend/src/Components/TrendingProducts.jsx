@@ -58,8 +58,8 @@ export default function TrendingProducts({
             try {
                 setIsLoading(true);
                 const data = await getTrendingProducts();
-                // Filter products to only show those with more than 3 stars
-                const filteredData = (data || []).filter(item => Number(item.average_rating || 0) > 3);
+                // Show most searched products regardless of average rating (user wants most searched)
+                const filteredData = data || [];
                 setTrendingProducts(filteredData);
             } catch (err) {
                 console.error("Failed to fetch trending products:", err);

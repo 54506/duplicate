@@ -36,7 +36,7 @@ export default function FeeStructure() {
     const overrides = data?.category_overrides || [];
 
     return (
-        <div className="space-y-8 md:space-y-12">
+        <div className="space-y-8 md:space-y-12 font-['Outfit']">
             <header>
                 <h1 className={`text-3xl md:text-4xl font-black tracking-tighter flex items-center gap-4 italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-indigo-500/20">

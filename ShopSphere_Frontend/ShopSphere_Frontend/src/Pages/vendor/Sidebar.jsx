@@ -49,7 +49,7 @@ export default function Sidebar() {
   ];
 
   const SidebarContent = ({ collapsed }) => (
-    <div className="relative h-full flex flex-col p-4 z-10">
+    <div className="relative h-full flex flex-col p-4 z-10 font-['Outfit']">
       {/* Logo */}
       <div className="flex justify-between items-center mb-10 px-2 h-16">
         <Link to="/welcome" className="flex items-center gap-0 group">
