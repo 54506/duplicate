@@ -11,7 +11,7 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-r91l8)q8sv%mg9mem%^emum4&*&d-ewt7tt6_=e%1h8vr@nrp='
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-r91l8)q8sv%mg9mem%^emum4&*&d-ewt7tt6_=e%1h8vr@nrp=')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
@@ -144,7 +144,9 @@ SIMPLE_JWT = {
 
 # CORS Configuration
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [
+
+# Default local origins for development
+_default_cors = [
     "http://localhost:5173",
     "http://localhost:5174",
     "http://localhost:5175",
@@ -157,14 +159,20 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5177",
 ]
 
-CSRF_TRUSTED_ORIGINS = [
+# In production, set CORS_ALLOWED_ORIGINS env var as comma-separated URLs
+# e.g. CORS_ALLOWED_ORIGINS=https://shopsphere.vercel.app,https://admin.vercel.app
+_env_cors = os.environ.get('CORS_ALLOWED_ORIGINS', '')
+_extra_cors = [u.strip() for u in _env_cors.split(',') if u.strip()]
+CORS_ALLOWED_ORIGINS = list(set(_default_cors + _extra_cors))
+
+CSRF_TRUSTED_ORIGINS = list(set([
     "http://localhost:5173",
     "http://localhost:5174",
     "http://localhost:5175",
     "http://127.0.0.1:5173",
     "http://127.0.0.1:5174",
     "http://127.0.0.1:5175",
-]
+] + _extra_cors))
 
 
 # Redirect URLs
@@ -175,26 +183,14 @@ LOGOUT_REDIRECT_URL = 'login'
 # Enable automatic trailing slash append for API robustness
 APPEND_SLASH = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'nandhuuppalapati@gmail.com'
-EMAIL_HOST_PASSWORD = 'gwojlfspeggsrasr'
-
-#import certifi
+# Email Configuration — credentials from environment variables
 import ssl
-
-#EMAIL_SSL_CERTFILE = certifi.where()
 EMAIL_SSL_KEYFILE = None
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'nandhuuppalapati@gmail.com'
-EMAIL_HOST_PASSWORD = 'jzfc arto roxz wgwj'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'nandhuuppalapati@gmail.com')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'jzfc arto roxz wgwj')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
