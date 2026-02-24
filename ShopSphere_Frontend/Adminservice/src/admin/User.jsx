@@ -104,22 +104,22 @@ const UserManagement = () => {
                         <div>
                             <div className="flex items-center gap-2">
                                 <h1 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>User Governance</h1>
-                                <span className="bg-emerald-500/10 text-emerald-500 text-[9px] font-black px-2 py-0.5 rounded-full uppercase border border-emerald-500/20 tracking-widest leading-none">Live</span>
+                                <span className="bg-emerald-500/10 text-emerald-500 text-[9px] font-semibold px-2 py-0.5 rounded-full uppercase border border-emerald-500/20 tracking-normal leading-none">Live</span>
                             </div>
-                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Access control and status management</p>
+                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-normal">Access control and status management</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
                         <button
                             onClick={() => reloadUsers()}
                             disabled={isLoading}
-                            className={`flex items-center gap-1.5 px-4 py-2 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-indigo-500/20 ${isLoading ? 'opacity-50' : 'bg-gradient-to-r from-indigo-600 to-violet-600 hover:scale-105'}`}
+                            className={`flex items-center gap-1.5 px-4 py-2 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20 ${isLoading ? 'opacity-50' : 'bg-gradient-to-r from-blue-600 to-emerald-600 hover:scale-105'}`}
                         >
                             <RefreshCcw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
                             Refresh
                         </button>
                         <NotificationBell />
-                        <div className={`hidden lg:flex items-center border rounded-full px-3 py-1.5 text-[9px] font-black uppercase tracking-widest gap-2 ${isDarkMode ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' : 'bg-indigo-50 border-indigo-100 text-indigo-600'}`}>
+                        <div className={`hidden lg:flex items-center border rounded-full px-3 py-1.5 text-[9px] font-semibold uppercase tracking-normal gap-2 ${isDarkMode ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' : 'bg-blue-50 border-blue-100 text-blue-600'}`}>
                             <ShieldCheck className="w-3.5 h-3.5" /> SuperAdmin
                         </div>
                     </div>
@@ -128,7 +128,7 @@ const UserManagement = () => {
                 <main className="flex-1 overflow-y-auto p-8 space-y-8">
                     {/* Stat Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <StatCard label="Total Registered" value={stats.total} icon={Users} color="indigo" isDarkMode={isDarkMode} />
+                        <StatCard label="Total Registered" value={stats.total} icon={Users} color="blue" isDarkMode={isDarkMode} />
                         <StatCard label="Active Users" value={stats.active} icon={UserCheck} color="emerald" isDarkMode={isDarkMode} />
                         <StatCard label="Restricted Access" value={stats.blocked} icon={Ban} color="rose" isDarkMode={isDarkMode} />
                     </div>
@@ -138,7 +138,7 @@ const UserManagement = () => {
                         <div className={`flex items-center gap-3 p-5 rounded-2xl border ${isDarkMode ? 'bg-rose-500/10 border-rose-500/20 text-rose-400' : 'bg-rose-50 border-rose-100 text-rose-600'}`}>
                             <AlertCircle className="w-5 h-5 shrink-0" />
                             <span className="text-sm font-semibold">{error}</span>
-                            <button onClick={() => reloadUsers()} className="ml-auto text-xs font-black underline">Retry</button>
+                            <button onClick={() => reloadUsers()} className="ml-auto text-xs font-semibold underline">Retry</button>
                         </div>
                     )}
 
@@ -151,8 +151,8 @@ const UserManagement = () => {
                                 <button
                                     key={tab}
                                     onClick={() => setActiveTab(tab)}
-                                    className={`px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${activeTab === tab
-                                        ? isDarkMode ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20' : 'bg-slate-900 text-white shadow-lg'
+                                    className={`px-6 py-2.5 rounded-xl text-[10px] font-semibold uppercase tracking-normal transition-all whitespace-nowrap ${activeTab === tab
+                                        ? isDarkMode ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'bg-slate-900 text-white shadow-lg'
                                         : isDarkMode ? 'text-slate-400 hover:bg-slate-800' : 'text-slate-500 hover:bg-slate-50'
                                         }`}
                                 >
@@ -171,7 +171,7 @@ const UserManagement = () => {
                                 <input
                                     type="text"
                                     placeholder="Search by name or email..."
-                                    className={`w-full pl-11 pr-4 py-3 border rounded-2xl text-sm focus:outline-none focus:ring-4 transition-all font-medium ${isDarkMode ? 'bg-slate-900 border-slate-800 text-white focus:ring-indigo-500/10 focus:border-indigo-500' : 'bg-white border-slate-200 text-slate-900 focus:ring-indigo-500/5 focus:border-indigo-500'}`}
+                                    className={`w-full pl-11 pr-4 py-3 border rounded-2xl text-sm focus:outline-none focus:ring-4 transition-all font-medium ${isDarkMode ? 'bg-slate-900 border-slate-800 text-white focus:ring-blue-500/10 focus:border-blue-500' : 'bg-white border-slate-200 text-slate-900 focus:ring-blue-500/5 focus:border-blue-500'}`}
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
@@ -186,7 +186,7 @@ const UserManagement = () => {
                                 <thead className={`border-b transition-colors duration-300 ${isDarkMode ? 'bg-slate-900/50 border-slate-800' : 'bg-slate-50/50 border-slate-100'}`}>
                                     <tr>
                                         {['User Details', 'Contact', 'Risk Potential', 'Account Status', 'Joined Date', 'Governance'].map(h => (
-                                            <th key={h} className="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">{h}</th>
+                                            <th key={h} className="px-8 py-5 text-[10px] font-semibold text-slate-500 uppercase tracking-normal">{h}</th>
                                         ))}
                                     </tr>
                                 </thead>
@@ -202,12 +202,12 @@ const UserManagement = () => {
                                             <tr key={user.id} className={`group transition-colors ${isDarkMode ? 'hover:bg-slate-800/50' : 'hover:bg-slate-50/50'}`}>
                                                 <td className="px-8 py-6">
                                                     <div className="flex items-center gap-4">
-                                                        <div className={`w-12 h-12 rounded-2xl shadow-sm border flex items-center justify-center font-black text-lg transition-all ${isDarkMode ? 'bg-[#0f172a] border-slate-800 text-indigo-400 group-hover:border-indigo-500' : 'bg-white border-slate-100 text-indigo-600 group-hover:scale-110'}`}>
+                                                        <div className={`w-12 h-12 rounded-2xl shadow-sm border flex items-center justify-center font-semibold text-lg transition-all ${isDarkMode ? 'bg-[#0f172a] border-slate-800 text-blue-400 group-hover:border-blue-500' : 'bg-white border-slate-100 text-blue-600 group-hover:scale-110'}`}>
                                                             {(user.name || user.email || '?').charAt(0).toUpperCase()}
                                                         </div>
                                                         <div>
                                                             <div className={`text-sm font-bold mb-0.5 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{user.name || '—'}</div>
-                                                            <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">UID #{user.id}</div>
+                                                            <div className="text-[10px] text-slate-500 font-bold uppercase tracking-normal">UID #{user.id}</div>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -218,7 +218,7 @@ const UserManagement = () => {
                                                 </td>
                                                 <td className="px-8 py-6">
                                                     <div className="group/risk relative flex flex-col gap-2 min-w-[120px]">
-                                                        <div className="flex items-center justify-between text-[11px] tracking-tight">
+                                                        <div className="flex items-center justify-between text-[11px] tracking-normal">
                                                             <span className={getRiskColor(user.riskScore ?? 0).text}>{user.riskScore ?? 0}%</span>
                                                             {(user.riskScore ?? 0) >= 70 && <AlertTriangle className="w-3 h-3 text-rose-500" />}
                                                         </div>
@@ -230,7 +230,7 @@ const UserManagement = () => {
                                                         </div>
                                                         {/* Tooltip breakdown */}
                                                         <div className="absolute bottom-full left-0 mb-2 hidden group-hover/risk:flex flex-col gap-1 bg-[#1e293b] text-white text-[10px] font-bold rounded-xl px-3 py-2.5 shadow-2xl z-10 w-44 border border-slate-700">
-                                                            <div className="text-slate-400 uppercase tracking-widest mb-1">Risk Breakdown</div>
+                                                            <div className="text-slate-400 uppercase tracking-normal mb-1">Risk Breakdown</div>
                                                             <div className="flex justify-between"><span className="text-slate-400">Cancelled Orders</span><span>{user.cancelled_orders ?? 0}</span></div>
                                                             <div className="flex justify-between"><span className="text-slate-400">Return Requests</span><span>{user.return_requests ?? 0}</span></div>
                                                             <div className="flex justify-between"><span className="text-slate-400">Failed Payments</span><span>{user.failed_payments ?? 0}</span></div>
@@ -240,7 +240,7 @@ const UserManagement = () => {
                                                 </td>
                                                 <td className="px-8 py-6">
                                                     <div className="flex flex-col gap-1">
-                                                        <span className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border w-fit transition-all ${getStatusStyles(user.status)}`}>
+                                                        <span className={`px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-normal border w-fit transition-all ${getStatusStyles(user.status)}`}>
                                                             {user.status}
                                                         </span>
                                                         {user.status === 'BLOCKED' && user.blocked_reason && (
@@ -260,7 +260,7 @@ const UserManagement = () => {
                                                         {user.status === 'ACTIVE' ? (
                                                             <button
                                                                 onClick={() => handleActionClick(user, 'BLOCK')}
-                                                                className={`flex items-center gap-2 px-4 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all border shadow-sm ${isDarkMode
+                                                                className={`flex items-center gap-2 px-4 py-2 text-[10px] font-semibold uppercase tracking-normal rounded-xl transition-all border shadow-sm ${isDarkMode
                                                                     ? 'bg-rose-500/10 text-rose-400 border-rose-500/20 hover:bg-rose-500 hover:text-white'
                                                                     : 'bg-rose-50 text-rose-600 border-rose-200 hover:bg-rose-600 hover:text-white'
                                                                     }`}
@@ -270,7 +270,7 @@ const UserManagement = () => {
                                                         ) : (
                                                             <button
                                                                 onClick={() => handleActionClick(user, 'UNBLOCK')}
-                                                                className={`flex items-center gap-2 px-4 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all border shadow-sm ${isDarkMode
+                                                                className={`flex items-center gap-2 px-4 py-2 text-[10px] font-semibold uppercase tracking-normal rounded-xl transition-all border shadow-sm ${isDarkMode
                                                                     ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-500 hover:text-white'
                                                                     : 'bg-emerald-50 text-emerald-600 border-emerald-200 hover:bg-emerald-600 hover:text-white'
                                                                     }`}
@@ -299,11 +299,11 @@ const UserManagement = () => {
                             </table>
                         </div>
                         <div className={`px-8 py-4 flex items-center justify-between border-t transition-colors duration-300 ${isDarkMode ? 'bg-slate-900/50 border-slate-800' : 'bg-slate-50/50 border-slate-100'}`}>
-                            <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">
+                            <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-normal">
                                 Live Directory • {filteredUsers.length} of {users.length} Users
                             </div>
-                            <div className="flex items-center gap-4 text-[10px] font-black text-slate-500 tracking-[0.2em] uppercase transition-colors">
-                                ISO Compliance Secured <ShieldCheck className="w-3.5 h-3.5 text-indigo-500" />
+                            <div className="flex items-center gap-4 text-[10px] font-semibold text-slate-500 tracking-normal uppercase transition-colors">
+                                ISO Compliance Secured <ShieldCheck className="w-3.5 h-3.5 text-blue-500" />
                             </div>
                         </div>
                     </div>
@@ -326,7 +326,7 @@ const UserManagement = () => {
                             <div className={`w-20 h-20 rounded-[2rem] flex items-center justify-center mb-8 border mx-auto ${pendingAction?.action === 'BLOCK' ? 'bg-rose-500/10 border-rose-500/20' : 'bg-emerald-500/10 border-emerald-500/20'}`}>
                                 {pendingAction?.action === 'BLOCK' ? <AlertTriangle className="w-10 h-10 text-rose-500" /> : <ShieldCheck className="w-10 h-10 text-emerald-500" />}
                             </div>
-                            <h2 className={`text-2xl font-black text-center mb-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Governance Event</h2>
+                            <h2 className={`text-2xl font-semibold text-center mb-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Governance Event</h2>
                             <p className="text-sm text-slate-500 text-center font-bold leading-relaxed mb-6 px-4">
                                 {pendingAction?.action === 'BLOCK' ? (
                                     <>You are about to <span className="text-rose-500">Restrict Access</span> for <span className={`${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{pendingAction?.user.name}</span>.</>
@@ -350,14 +350,14 @@ const UserManagement = () => {
                                 <button
                                     onClick={confirmAction}
                                     disabled={isActioning}
-                                    className={`w-full py-4 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl transition-all flex items-center justify-center gap-2 ${pendingAction?.action === 'BLOCK' ? 'bg-rose-600 shadow-rose-900/40 hover:bg-rose-500' : 'bg-gradient-to-r from-indigo-600 to-violet-600 shadow-indigo-900/40 hover:scale-[1.02]'}`}
+                                    className={`w-full py-4 text-white rounded-2xl text-[10px] font-semibold uppercase tracking-normal shadow-xl transition-all flex items-center justify-center gap-2 ${pendingAction?.action === 'BLOCK' ? 'bg-rose-600 shadow-rose-900/40 hover:bg-rose-500' : 'bg-gradient-to-r from-blue-600 to-emerald-600 shadow-blue-900/40 hover:scale-[1.02]'}`}
                                 >
                                     {isActioning ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Confirm Authorization'}
                                 </button>
                                 <button
                                     onClick={() => setIsActionModalOpen(false)}
                                     disabled={isActioning}
-                                    className={`w-full py-4 border rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${isDarkMode ? 'bg-slate-800 border-slate-700 text-slate-400 hover:bg-slate-700' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50'}`}
+                                    className={`w-full py-4 border rounded-2xl text-[10px] font-semibold uppercase tracking-normal transition-all ${isDarkMode ? 'bg-slate-800 border-slate-700 text-slate-400 hover:bg-slate-700' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50'}`}
                                 >
                                     Cancel
                                 </button>
@@ -372,7 +372,7 @@ const UserManagement = () => {
 
 const StatCard = ({ label, value, icon: Icon, color, isDarkMode }) => {
     const colors = {
-        indigo: isDarkMode ? 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20 shadow-indigo-500/5' : 'text-indigo-600 bg-indigo-50 border-indigo-100 shadow-indigo-500/5',
+        blue: isDarkMode ? 'text-blue-400 bg-blue-500/10 border-blue-500/20 shadow-blue-500/5' : 'text-blue-600 bg-blue-50 border-blue-100 shadow-blue-500/5',
         rose: isDarkMode ? 'text-rose-400 bg-rose-500/10 border-rose-500/20 shadow-rose-500/5' : 'text-rose-500 bg-rose-50 border-rose-100 shadow-rose-500/5',
         emerald: isDarkMode ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20 shadow-emerald-500/5' : 'text-emerald-600 bg-emerald-50 border-emerald-100 shadow-emerald-500/5',
     };
@@ -385,10 +385,10 @@ const StatCard = ({ label, value, icon: Icon, color, isDarkMode }) => {
             <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 shadow-sm border transition-colors duration-300 ${colors[color]}`}>
                 <Icon className="w-6 h-6" />
             </div>
-            <div className={`text-[10px] font-black uppercase tracking-[0.2em] mb-1 ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>{label}</div>
+            <div className={`text-[10px] font-semibold uppercase tracking-normal mb-1 ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>{label}</div>
             <div className="flex items-end justify-between">
-                <div className={`text-3xl font-black leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{value ?? '—'}</div>
-                <div className={`flex items-center gap-1 text-[10px] font-black px-2 py-1 rounded-lg ${isDarkMode ? 'bg-emerald-500/10 text-emerald-400' : 'bg-emerald-50 text-emerald-500'}`}>
+                <div className={`text-3xl font-semibold leading-none ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{value ?? '—'}</div>
+                <div className={`flex items-center gap-1 text-[10px] font-semibold px-2 py-1 rounded-lg ${isDarkMode ? 'bg-emerald-500/10 text-emerald-400' : 'bg-emerald-50 text-emerald-500'}`}>
                     <ArrowUpRight className="w-3 h-3" /> LIVE
                 </div>
             </div>

@@ -58,17 +58,17 @@ const VendorList = () => {
             <main className="flex-1 flex flex-col min-w-0">
                 <header className={`border-b px-8 h-20 flex items-center justify-between sticky top-0 z-20 transition-colors duration-300 ${isDarkMode ? 'bg-[#0f172a]/80 border-slate-800 backdrop-blur-md' : 'bg-white border-slate-100 shadow-sm'}`}>
                     <div className="flex items-center gap-4">
-                        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className={`p-2 rounded-xl border transition-all ${isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white' : 'bg-white border-slate-200 text-slate-400 hover:text-indigo-600 shadow-sm'}`}>
+                        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className={`p-2 rounded-xl border transition-all ${isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white' : 'bg-white border-slate-200 text-slate-400 hover:text-blue-600 shadow-sm'}`}>
                             {isSidebarOpen ? <PanelLeftClose className="w-5 h-5" /> : <PanelLeftOpen className="w-5 h-5" />}
                         </button>
                         <div>
-                            <h1 className={`text-lg font-bold tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Merchant Index</h1>
-                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Marketplace Partner Registry</p>
+                            <h1 className={`text-lg font-bold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Merchant Index</h1>
+                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-normal">Marketplace Partner Registry</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-6">
                         <NotificationBell />
-                        <div className={`hidden lg:flex items-center border rounded-lg px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest gap-2 ${isDarkMode ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' : 'bg-slate-50 border-slate-200 text-slate-500'}`}>
+                        <div className={`hidden lg:flex items-center border rounded-lg px-3 py-1.5 text-[10px] font-bold uppercase tracking-normal gap-2 ${isDarkMode ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' : 'bg-slate-50 border-slate-200 text-slate-500'}`}>
                             <Activity className="w-3.5 h-3.5" /> Core Ops Synced
                         </div>
                     </div>
@@ -79,21 +79,21 @@ const VendorList = () => {
                         {/* Stats Summary */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {[
-                                { label: 'Total Partners', value: vendors.length, icon: Users, color: 'indigo' },
+                                { label: 'Total Partners', value: vendors.length, icon: Users, color: 'blue' },
                                 { label: 'Active Channels', value: vendors.filter(v => v.status === 'Approved').length, icon: CheckCircle2, color: 'emerald' },
                                 { label: 'Blocked Nodes', value: vendors.filter(v => v.status === 'Blocked').length, icon: XCircle, color: 'rose' }
                             ].map((stat, i) => (
                                 <div key={i} className={`p-6 rounded-[2rem] border transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800' : 'bg-white border-slate-100 shadow-sm'}`}>
                                     <div className="flex items-center gap-4">
-                                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${stat.color === 'indigo' ? (isDarkMode ? 'bg-indigo-500/10 text-indigo-400' : 'bg-indigo-50 text-indigo-600') :
+                                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${stat.color === 'blue' ? (isDarkMode ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-50 text-blue-600') :
                                             stat.color === 'emerald' ? (isDarkMode ? 'bg-emerald-500/10 text-emerald-400' : 'bg-emerald-50 text-emerald-600') :
                                                 (isDarkMode ? 'bg-rose-500/10 text-rose-400' : 'bg-rose-50 text-rose-600')
                                             }`}>
                                             <stat.icon className="w-6 h-6" />
                                         </div>
                                         <div>
-                                            <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-0.5">{stat.label}</p>
-                                            <p className={`text-2xl font-black ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{stat.value}</p>
+                                            <p className="text-[10px] font-semibold uppercase tracking-normal text-slate-500 mb-0.5">{stat.label}</p>
+                                            <p className={`text-2xl font-semibold ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{stat.value}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@ const VendorList = () => {
                                 <select
                                     value={filterStatus}
                                     onChange={(e) => setFilterStatus(e.target.value)}
-                                    className={`rounded-2xl px-4 py-3 text-sm font-black uppercase tracking-widest focus:outline-none min-w-[180px] w-full transition-all cursor-pointer ${isDarkMode ? 'bg-slate-900/50 border-slate-800 text-slate-300' : 'bg-slate-50 border-transparent text-slate-600'
+                                    className={`rounded-2xl px-4 py-3 text-sm font-semibold uppercase tracking-normal focus:outline-none min-w-[180px] w-full transition-all cursor-pointer ${isDarkMode ? 'bg-slate-900/50 border-slate-800 text-slate-300' : 'bg-slate-50 border-transparent text-slate-600'
                                         }`}
                                 >
                                     <option value="All Vendors">All Protocols</option>
@@ -125,8 +125,8 @@ const VendorList = () => {
                                 </select>
                                 <button
                                     onClick={() => setActiveFilter(filterStatus)}
-                                    className={`px-8 py-3 rounded-2xl font-black text-[11px] uppercase tracking-widest transition-all shadow-xl hover:translate-y-[-2px] active:translate-y-[1px] ${isDarkMode
-                                        ? 'bg-indigo-600 text-white shadow-indigo-600/20 hover:bg-indigo-500'
+                                    className={`px-8 py-3 rounded-2xl font-semibold text-[11px] uppercase tracking-normal transition-all shadow-xl hover:translate-y-[-2px] active:translate-y-[1px] ${isDarkMode
+                                        ? 'bg-blue-600 text-white shadow-blue-600/20 hover:bg-blue-500'
                                         : 'bg-slate-900 text-white shadow-slate-900/20 hover:bg-slate-800'
                                         }`}
                                 >
@@ -142,32 +142,32 @@ const VendorList = () => {
                                     <thead className={`border-b transition-colors duration-300 ${isDarkMode ? 'bg-slate-900/50 border-slate-800' : 'bg-slate-50/50 border-slate-100'}`}>
                                         <tr>
                                             {['Entity / Store Module', 'Principal', 'Compliance', 'Onboarded', 'Operations'].map(h => (
-                                                <th key={h} className="px-8 py-6 text-[10px] font-black text-slate-500 uppercase tracking-widest">{h}</th>
+                                                <th key={h} className="px-8 py-6 text-[10px] font-semibold text-slate-500 uppercase tracking-normal">{h}</th>
                                             ))}
                                         </tr>
                                     </thead>
                                     <tbody className={`divide-y transition-colors duration-300 ${isDarkMode ? 'divide-slate-800' : 'divide-slate-50'}`}>
                                         {filteredVendors.map((vendor) => (
-                                            <tr key={vendor.id} className={`group transition-all hover:translate-x-1 ${isDarkMode ? 'hover:bg-indigo-500/5' : 'hover:bg-slate-50/50'}`}>
+                                            <tr key={vendor.id} className={`group transition-all hover:translate-x-1 ${isDarkMode ? 'hover:bg-blue-500/5' : 'hover:bg-slate-50/50'}`}>
                                                 <td className="px-8 py-7">
                                                     <div className="flex items-center gap-4">
-                                                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${isDarkMode ? 'bg-slate-900 border border-slate-800 text-indigo-400 group-hover:border-indigo-500' : 'bg-slate-50 border border-slate-100 text-indigo-600 shadow-sm group-hover:border-indigo-200'}`}>
+                                                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${isDarkMode ? 'bg-slate-900 border border-slate-800 text-blue-400 group-hover:border-blue-500' : 'bg-slate-50 border border-slate-100 text-blue-600 shadow-sm group-hover:border-blue-200'}`}>
                                                             <Store className="w-5 h-5" />
                                                         </div>
                                                         <div>
-                                                            <div className={`text-sm font-bold tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{vendor.storeName}</div>
-                                                            <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mt-0.5">ID: {vendor.id}</div>
+                                                            <div className={`text-sm font-bold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{vendor.storeName}</div>
+                                                            <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-normal mt-0.5">ID: {vendor.id}</div>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td className="px-8 py-7">
                                                     <div className="flex items-center gap-2">
-                                                        <div className={`w-1.5 h-1.5 rounded-full ${isDarkMode ? 'bg-indigo-500' : 'bg-indigo-600'}`} />
+                                                        <div className={`w-1.5 h-1.5 rounded-full ${isDarkMode ? 'bg-blue-500' : 'bg-blue-600'}`} />
                                                         <span className="text-sm font-bold text-slate-500">{vendor.owner}</span>
                                                     </div>
                                                 </td>
                                                 <td className="px-8 py-7">
-                                                    <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border transition-all ${vendor.status === 'Approved' ? (isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-emerald-50 text-emerald-600 border-emerald-100') :
+                                                    <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[9px] font-semibold uppercase tracking-normal border transition-all ${vendor.status === 'Approved' ? (isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-emerald-50 text-emerald-600 border-emerald-100') :
                                                         vendor.status === 'Blocked' ? (isDarkMode ? 'bg-rose-500/10 text-rose-400 border-rose-500/20' : 'bg-rose-50 text-rose-600 border-rose-100') :
                                                             (isDarkMode ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 'bg-amber-50 text-amber-600 border-amber-100')
                                                         }`}>
@@ -176,7 +176,7 @@ const VendorList = () => {
                                                     </span>
                                                 </td>
                                                 <td className="px-8 py-7">
-                                                    <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] font-mono italic">
+                                                    <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-normal font-mono">
                                                         {vendor.registrationDate}
                                                     </div>
                                                 </td>
@@ -190,14 +190,14 @@ const VendorList = () => {
                                                                     navigate(`/vendor/${vendor.id}`);
                                                                 }
                                                             }}
-                                                            className={`p-2 rounded-xl transition-all ${isDarkMode ? 'bg-slate-800 text-indigo-400 hover:bg-slate-700' : 'bg-slate-50 text-indigo-600 hover:bg-indigo-100 border border-slate-100 hover:border-indigo-200 shadow-sm'}`}
+                                                            className={`p-2 rounded-xl transition-all ${isDarkMode ? 'bg-slate-800 text-blue-400 hover:bg-slate-700' : 'bg-slate-50 text-blue-600 hover:bg-blue-100 border border-slate-100 hover:border-blue-200 shadow-sm'}`}
                                                         >
                                                             <ArrowUpRight className="w-5 h-5" />
                                                         </button>
                                                         {vendor.status === 'Approved' && (
                                                             <button
                                                                 onClick={() => handleStatusUpdate(vendor.id, 'Blocked')}
-                                                                className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${isDarkMode ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/20' : 'bg-rose-50 text-rose-600 border border-rose-100 hover:bg-rose-100'}`}
+                                                                className={`px-4 py-2 rounded-xl text-[10px] font-semibold uppercase tracking-normal transition-all ${isDarkMode ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/20' : 'bg-rose-50 text-rose-600 border border-rose-100 hover:bg-rose-100'}`}
                                                             >
                                                                 Restrict
                                                             </button>
@@ -205,7 +205,7 @@ const VendorList = () => {
                                                         {vendor.status === 'Blocked' && (
                                                             <button
                                                                 onClick={() => handleStatusUpdate(vendor.id, 'Approved')}
-                                                                className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20' : 'bg-emerald-50 text-emerald-600 border-emerald-100 hover:bg-emerald-100'}`}
+                                                                className={`px-4 py-2 rounded-xl text-[10px] font-semibold uppercase tracking-normal transition-all ${isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20' : 'bg-emerald-50 text-emerald-600 border-emerald-100 hover:bg-emerald-100'}`}
                                                             >
                                                                 Reactivate
                                                             </button>

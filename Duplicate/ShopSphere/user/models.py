@@ -691,6 +691,11 @@ class Review(models.Model):
     pictures = models.ImageField(upload_to='review_pics/', null=True, blank=True)
     reviewer_name = models.CharField(max_length=100, blank=True, null=True) # Added this
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('Product', 'user')
+        ordering = ['-created_at']
 
     def __str__(self):
         return f"Review for {self.Product.name} by {self.reviewer_name or (self.user.username if self.user else 'Anonymous')}"

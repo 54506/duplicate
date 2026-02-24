@@ -26,8 +26,8 @@ export default function FeeStructure() {
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center min-h-[60vh]">
-                <div className="w-12 h-12 border-4 border-white/5 border-t-indigo-500 rounded-full animate-spin mb-4"></div>
-                <p className="text-[10px] font-black uppercase tracking-[4px] text-gray-500">Checking fee rates...</p>
+                <div className="w-12 h-12 border-4 border-slate-100 border-t-teal-400 rounded-full animate-spin mb-4"></div>
+                <p className="text-[10px] font-semibold uppercase tracking-normal text-gray-500">Checking fee rates...</p>
             </div>
         );
     }
@@ -36,15 +36,15 @@ export default function FeeStructure() {
     const overrides = data?.category_overrides || [];
 
     return (
-        <div className="space-y-8 md:space-y-12 font-['Outfit']">
+        <div className="space-y-8 md:space-y-12 font-['Inter']">
             <header>
-                <h1 className={`text-3xl md:text-4xl font-black tracking-tighter flex items-center gap-4 italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-indigo-500/20">
+                <h1 className={`text-3xl md:text-4xl font-semibold tracking-normal flex items-center gap-4  uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-teal-500 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-teal-400/20">
                         <FaShieldAlt size={22} />
                     </div>
                     Selling Fees
                 </h1>
-                <p className="text-[10px] font-black uppercase tracking-[4px] text-gray-500 mt-3 ml-1 italic">
+                <p className="text-[10px] font-semibold uppercase tracking-normal text-gray-500 mt-3 ml-1 ">
                     Platform commission rates
                 </p>
             </header>
@@ -53,21 +53,21 @@ export default function FeeStructure() {
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-indigo-600 rounded-[32px] md:rounded-[56px] p-8 md:p-14 text-white shadow-2xl shadow-indigo-500/20 relative overflow-hidden group border border-indigo-400/20"
+                className="bg-teal-500 rounded-[32px] md:rounded-[56px] p-8 md:p-14 text-white shadow-2xl shadow-teal-400/20 relative overflow-hidden group border border-indigo-400/20"
             >
                 <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full translate-x-12 -translate-y-12 blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12 relative z-10">
                     <div className="space-y-4 md:space-y-6">
-                        <span className="bg-white/10 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[4px] backdrop-blur-md italic inline-block border border-white/10">
+                        <span className="bg-white/10 px-6 py-2 rounded-full text-[10px] font-semibold uppercase tracking-normal backdrop-blur-md  inline-block border border-slate-200">
                             General Fee
                         </span>
                         <div>
-                            <h2 className="text-6xl md:text-8xl font-black tracking-tighter italic mb-4">
+                            <h2 className="text-6xl md:text-8xl font-semibold tracking-normal  mb-4">
                                 {globalRate?.commission_type === 'percentage' ? `${globalRate.percentage}` :
                                     globalRate?.commission_type === 'fixed' ? `₹${globalRate.fixed_amount}` : '0'}<span className="text-2xl md:text-4xl">{globalRate?.commission_type === 'percentage' ? '%' : ''}</span>
                             </h2>
-                            <p className="text-indigo-100 font-medium text-base md:text-lg leading-relaxed max-w-sm italic">
+                            <p className="text-indigo-100 font-medium text-base md:text-lg leading-relaxed max-w-sm ">
                                 Standard fee applied to most product deployments across the marketplace.
                             </p>
                         </div>
@@ -83,10 +83,10 @@ export default function FeeStructure() {
             {/* Category Exceptions */}
             <div className="space-y-8">
                 <div className="flex items-center gap-4">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${isDarkMode ? 'bg-indigo-500/10 text-indigo-400 border-indigo-500/10' : 'bg-indigo-50 text-indigo-600 border-indigo-100'}`}>
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${isDarkMode ? 'bg-teal-400/10 text-indigo-400 border-teal-400/10' : 'bg-indigo-50 text-teal-500 border-indigo-100'}`}>
                         <FaListUl size={18} />
                     </div>
-                    <h3 className={`text-xl font-black tracking-tight italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Category Specific Fees</h3>
+                    <h3 className={`text-xl font-semibold tracking-normal  uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Category Specific Fees</h3>
                 </div>
 
                 {overrides.length > 0 ? (
@@ -98,20 +98,20 @@ export default function FeeStructure() {
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className={`p-8 rounded-[40px] border shadow-2xl transition-all group flex flex-col justify-between h-44 md:h-52 relative overflow-hidden ${isDarkMode ? 'bg-white/5 border-white/5 hover:border-indigo-500/30' : 'bg-white border-slate-100 hover:border-indigo-200 shadow-indigo-500/5'}`}
+                                    className={`p-8 rounded-[40px] border shadow-2xl transition-all group flex flex-col justify-between h-44 md:h-52 relative overflow-hidden ${isDarkMode ? 'bg-slate-900 border-slate-800 hover:border-teal-400/30' : 'bg-white border-slate-100 hover:border-indigo-200 shadow-teal-400/5'}`}
                                 >
-                                    <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-teal-400/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
                                     <div className="flex justify-between items-start relative z-10">
                                         <div className="min-w-0 pr-4">
-                                            <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest mb-1 italic">Merchant Sector</p>
-                                            <h4 className={`text-base md:text-lg font-black tracking-tight uppercase truncate italic ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{item.category_display}</h4>
+                                            <p className="text-[9px] font-semibold text-gray-500 uppercase tracking-widest mb-1 ">Merchant Sector</p>
+                                            <h4 className={`text-base md:text-lg font-semibold tracking-normal uppercase truncate  ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{item.category_display}</h4>
                                         </div>
-                                        <div className={`w-10 h-10 rounded-xl flex flex-shrink-0 items-center justify-center font-black transition-all border shadow-inner ${isDarkMode ? 'bg-white/5 text-indigo-400 border-white/5 group-hover:bg-indigo-600 group-hover:text-white' : 'bg-slate-50 text-indigo-600 border-slate-200 group-hover:bg-slate-900 group-hover:text-white'}`}>
+                                        <div className={`w-10 h-10 rounded-xl flex flex-shrink-0 items-center justify-center font-semibold transition-all border shadow-inner ${isDarkMode ? 'bg-slate-900 text-indigo-400 border-slate-800 group-hover:bg-teal-500 group-hover:text-white' : 'bg-slate-50 text-teal-500 border-slate-200 group-hover:bg-slate-900 group-hover:text-white'}`}>
                                             {item.category_display?.[0]}
                                         </div>
                                     </div>
                                     <div className="relative z-10">
-                                        <p className="text-3xl md:text-4xl font-black text-indigo-400 tracking-tighter italic">
+                                        <p className="text-3xl md:text-4xl font-semibold text-indigo-400 tracking-normal ">
                                             {item.commission_type === 'percentage' ? `${item.percentage}%` : `₹${item.fixed_amount}`}
                                         </p>
                                     </div>
@@ -120,11 +120,11 @@ export default function FeeStructure() {
                         </AnimatePresence>
                     </div>
                 ) : (
-                    <div className={`border-4 border-dashed rounded-[40px] p-16 md:p-24 text-center space-y-4 ${isDarkMode ? 'bg-white/5 border-white/5' : 'bg-slate-50 border-slate-200'}`}>
-                        <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto border ${isDarkMode ? 'bg-white/5 text-slate-500 border-white/5' : 'bg-white text-slate-400 border-slate-100 shadow-sm'}`}>
+                    <div className={`border-4 border-dashed rounded-[40px] p-16 md:p-24 text-center space-y-4 ${isDarkMode ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+                        <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto border ${isDarkMode ? 'bg-slate-900 text-slate-500 border-slate-800' : 'bg-white text-slate-400 border-slate-100 shadow-sm'}`}>
                             <FaInfoCircle size={24} />
                         </div>
-                        <p className={`text-[10px] font-black uppercase tracking-[4px] italic ${isDarkMode ? 'text-gray-600' : 'text-gray-400'}`}>No category overrides found</p>
+                        <p className={`text-[10px] font-semibold uppercase tracking-normal  ${isDarkMode ? 'text-gray-600' : 'text-gray-400'}`}>No category overrides found</p>
                     </div>
                 )}
             </div>
@@ -137,8 +137,8 @@ export default function FeeStructure() {
                         <FaInfoCircle size={24} />
                     </div>
                     <div className="space-y-3">
-                        <h4 className="text-xl font-black text-amber-500 uppercase tracking-tighter italic">Fee Logic Verification</h4>
-                        <p className={`text-xs md:text-sm font-medium leading-relaxed max-w-2xl italic ${isDarkMode ? 'text-amber-200/60' : 'text-amber-700/80'}`}>
+                        <h4 className="text-xl font-semibold text-amber-500 uppercase tracking-normal ">Fee Logic Verification</h4>
+                        <p className={`text-xs md:text-sm font-medium leading-relaxed max-w-2xl  ${isDarkMode ? 'text-amber-200/60' : 'text-amber-700/80'}`}>
                             Selling fees are automatically deducted at the point of customer acquisition. Net earnings represent the final settlement amount after all platform commissions have been processed.
                         </p>
                     </div>

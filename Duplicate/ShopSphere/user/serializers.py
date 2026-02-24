@@ -122,19 +122,48 @@ class AddressSerializer(serializers.ModelSerializer):
 
 class OrderItemSerializer(serializers.ModelSerializer):
     product_image = serializers.SerializerMethodField()
+    user_review = serializers.SerializerMethodField()
 
     class Meta:
         model = OrderItem
-        fields = ['id', 'product', 'vendor', 'product_name', 'product_price', 'quantity', 'subtotal', 'vendor_status', 'product_image']
+        fields = ['id', 'product', 'vendor', 'product_name', 'product_price', 'quantity', 'subtotal', 'vendor_status', 'product_image', 'user_review']
 
     def get_product_image(self, obj):
         request = self.context.get('request')
+        if not obj.product:
+            return None
+            
         first_image = obj.product.images.first()
         if first_image:
             path = reverse('serve_product_image', kwargs={'image_id': first_image.id})
             if request:
                 return request.build_absolute_uri(path)
             return path
+        return None
+
+    def get_user_review(self, obj):
+        request = self.context.get('request')
+        if not request or not request.user.is_authenticated or not obj.product:
+            return None
+            
+        from .models import Review
+        from django.utils import timezone
+        
+        review = Review.objects.filter(user=request.user, Product=obj.product).first()
+        if review:
+            # Check if it's within 5 days for editing
+            time_diff = timezone.now() - review.created_at
+            can_edit = time_diff.days < 5
+            
+            return {
+                'id': review.id,
+                'rating': review.rating,
+                'comment': review.comment,
+                'reviewer_name': review.reviewer_name,
+                'created_at': review.created_at,
+                'can_edit_review': can_edit,
+                'pictures': review.pictures.url if review.pictures else None
+            }
         return None
 
 
@@ -185,9 +214,7 @@ class CartSerializer(serializers.ModelSerializer):
         return obj.get_total()
 
 
-# ===============================================
-#          WALLET & PAYMENT SERIALIZERS
-# ===============================================
+        #  WALLET & PAYMENT SERIALIZERS
 
 class WalletTransactionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -203,9 +230,7 @@ class UserWalletSerializer(serializers.ModelSerializer):
         fields = ['id', 'balance', 'total_credited', 'total_debited', 'transactions', 'created_at']
 
 
-# ===============================================
 #          RETURN & REFUND SERIALIZERS
-# ===============================================
 
 class OrderReturnSerializer(serializers.ModelSerializer):
     class Meta:
@@ -219,9 +244,7 @@ class RefundSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# ===============================================
-#          TWO-FACTOR AUTH SERIALIZER
-# ===============================================
+        #  TWO-FACTOR AUTH SERIALIZER
 
 class TwoFactorAuthSerializer(serializers.ModelSerializer):
     class Meta:
@@ -230,9 +253,7 @@ class TwoFactorAuthSerializer(serializers.ModelSerializer):
         extra_kwargs = {'secret_key': {'write_only': True}}
 
 
-# ===============================================
-#          NOTIFICATION SERIALIZER
-# ===============================================
+        #  NOTIFICATION SERIALIZER
 
 class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -240,9 +261,7 @@ class NotificationSerializer(serializers.ModelSerializer):
         fields = ['id', 'notification_type', 'title', 'message', 'is_read', 'created_at', 'read_at']
 
 
-# ===============================================
-#          DISPUTE SERIALIZER
-# ===============================================
+        #  DISPUTE SERIALIZER
 
 class DisputeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -250,9 +269,7 @@ class DisputeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# ===============================================
-#          COUPON SERIALIZERS
-# ===============================================
+        #  COUPON SERIALIZERS
 
 class CouponSerializer(serializers.ModelSerializer):
     class Meta:
@@ -274,7 +291,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = ['id', 'user', 'username', 'Product', 'product_id', 'reviewer_name', 'rating', 'comment', 'pictures', 'created_at']
+        fields = ['id', 'user', 'username', 'Product', 'product_id', 'reviewer_name', 'rating', 'comment', 'pictures', 'created_at', 'updated_at']
         read_only_fields = ['user', 'Product']
 
     def get_username(self, obj):

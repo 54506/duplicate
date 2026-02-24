@@ -111,7 +111,7 @@ const VendorApproval = () => {
         switch (vendor.approval_status?.toLowerCase()) {
             case 'approved': return 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20';
             case 'pending': return 'bg-amber-500/10 text-amber-500 border-amber-500/20';
-            case 'rejected': return 'bg-orange-500/10 text-orange-500 border-orange-500/20';
+            case 'rejected': return 'bg-blue-500/10 text-blue-500 border-blue-500/20';
             default: return isDarkMode ? 'bg-slate-800 text-slate-400 border-slate-700' : 'bg-slate-50 text-slate-600 border-slate-100';
         }
     };
@@ -123,20 +123,20 @@ const VendorApproval = () => {
             <div className="flex-1 flex flex-col min-w-0 transition-all duration-300">
                 <header className={`border-b px-8 h-20 flex items-center justify-between z-20 sticky top-0 transition-all duration-300 ${isDarkMode ? 'bg-[#0f172a]/80 border-slate-800 backdrop-blur-md' : 'bg-white border-slate-100 shadow-sm'}`}>
                     <div className="flex items-center gap-4">
-                        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className={`p-2 rounded-xl border transition-all ${isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white' : 'bg-white border-slate-200 text-slate-400 hover:text-indigo-600 shadow-sm'}`}>
+                        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className={`p-2 rounded-xl border transition-all ${isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white' : 'bg-white border-slate-200 text-slate-400 hover:text-blue-600 shadow-sm'}`}>
                             {isSidebarOpen ? <PanelLeftClose className="w-5 h-5" /> : <PanelLeftOpen className="w-5 h-5" />}
                         </button>
                         <div>
                             <div className="flex items-center gap-2">
-                                <h1 className={`text-lg font-black tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Partner Registry</h1>
-                                <span className={`text-[8px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest ${isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-emerald-50 text-emerald-600 border border-emerald-100'}`}>Synced</span>
+                                <h1 className={`text-lg font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Partner Registry</h1>
+                                <span className={`text-[8px] font-semibold px-1.5 py-0.5 rounded-md uppercase tracking-normal ${isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-emerald-50 text-emerald-600 border border-emerald-100'}`}>Synced</span>
                             </div>
-                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Global Merchant Lifecycle Management</p>
+                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-normal">Global Merchant Lifecycle Management</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-6">
                         <NotificationBell />
-                        <div className={`hidden lg:flex items-center border rounded-lg px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest gap-2 ${isDarkMode ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' : 'bg-slate-50 border-slate-200 text-slate-500'}`}>
+                        <div className={`hidden lg:flex items-center border rounded-lg px-3 py-1.5 text-[10px] font-bold uppercase tracking-normal gap-2 ${isDarkMode ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' : 'bg-slate-50 border-slate-200 text-slate-500'}`}>
                             <Users className="w-3.5 h-3.5" /> Core Node_02
                         </div>
                     </div>
@@ -146,9 +146,9 @@ const VendorApproval = () => {
                     <div className="max-w-7xl mx-auto space-y-8">
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                             {[
-                                { label: 'Total Partners', value: vendors.length, icon: Store, color: 'indigo' },
+                                { label: 'Total Partners', value: vendors.length, icon: Store, color: 'blue' },
                                 { label: 'Active Service', value: vendors.filter(v => v.approval_status === 'approved' && !v.is_blocked).length, icon: Activity, color: 'emerald' },
-                                { label: 'Verification Peak', value: '48h', icon: Clock, color: 'violet' },
+                                { label: 'Verification Peak', value: '48h', icon: Clock, color: 'emerald' },
                                 { label: 'Security Blocks', value: vendors.filter(v => v.is_blocked).length, icon: Ban, color: 'rose' }
                             ].map((stat, i) => (
                                 <motion.div
@@ -159,16 +159,16 @@ const VendorApproval = () => {
                                     className={`p-6 rounded-[2.5rem] border transition-all duration-300 group ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800 hover:border-slate-700 hover:bg-[#1e293b]/80' : 'bg-white border-slate-100 shadow-sm hover:shadow-xl'}`}
                                 >
                                     <div className="flex items-center gap-5">
-                                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all group-hover:scale-110 ${stat.color === 'indigo' ? (isDarkMode ? 'bg-indigo-500/10 text-indigo-400' : 'bg-indigo-50 text-indigo-600') :
-                                            stat.color === 'violet' ? (isDarkMode ? 'bg-violet-500/10 text-violet-400' : 'bg-violet-50 text-violet-600') :
+                                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all group-hover:scale-110 ${stat.color === 'blue' ? (isDarkMode ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-50 text-blue-600') :
+                                            stat.color === 'emerald' ? (isDarkMode ? 'bg-emerald-500/10 text-emerald-400' : 'bg-emerald-50 text-emerald-600') :
                                                 stat.color === 'emerald' ? (isDarkMode ? 'bg-emerald-500/10 text-emerald-400' : 'bg-emerald-50 text-emerald-600') :
                                                     (isDarkMode ? 'bg-rose-500/10 text-rose-400' : 'bg-rose-50 text-rose-600')
                                             }`}>
                                             <stat.icon className="w-6 h-6" />
                                         </div>
                                         <div>
-                                            <p className="text-[9px] font-black uppercase tracking-[2px] text-slate-500 mb-1">{stat.label}</p>
-                                            <p className={`text-2xl font-black italic tracking-tighter ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{stat.value}</p>
+                                            <p className="text-[9px] font-semibold uppercase tracking-normal text-slate-500 mb-1">{stat.label}</p>
+                                            <p className={`text-2xl font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{stat.value}</p>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -177,13 +177,13 @@ const VendorApproval = () => {
 
                         <div className={`p-4 rounded-[3rem] border transition-all duration-300 flex flex-col md:flex-row gap-4 items-center ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800' : 'bg-white border-slate-100 shadow-sm'}`}>
                             <div className="relative flex-1 w-full group">
-                                <Search className={`absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors ${isDarkMode ? 'text-slate-500 group-focus-within:text-indigo-400' : 'text-slate-400 group-focus-within:text-indigo-600'}`} />
+                                <Search className={`absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors ${isDarkMode ? 'text-slate-500 group-focus-within:text-blue-400' : 'text-slate-400 group-focus-within:text-blue-600'}`} />
                                 <input
                                     type="text"
                                     placeholder="Trace partner identity (Name, Email, or Hash)..."
-                                    className={`w-full pl-12 pr-6 py-4 rounded-[2rem] text-sm focus:outline-none focus:ring-4 transition-all font-bold tracking-tight uppercase ${isDarkMode
-                                        ? 'bg-slate-900/50 border-slate-800 text-white placeholder-slate-600 focus:ring-indigo-500/10 focus:border-indigo-500'
-                                        : 'bg-slate-50 border-transparent text-slate-900 placeholder-slate-400 focus:ring-indigo-500/5 focus:bg-white focus:border-indigo-200 shadow-inner'
+                                    className={`w-full pl-12 pr-6 py-4 rounded-[2rem] text-sm focus:outline-none focus:ring-4 transition-all font-bold tracking-normal uppercase ${isDarkMode
+                                        ? 'bg-slate-900/50 border-slate-800 text-white placeholder-slate-600 focus:ring-blue-500/10 focus:border-blue-500'
+                                        : 'bg-slate-50 border-transparent text-slate-900 placeholder-slate-400 focus:ring-blue-500/5 focus:bg-white focus:border-blue-200 shadow-inner'
                                         }`}
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -195,7 +195,7 @@ const VendorApproval = () => {
                                     <select
                                         value={filterStatus}
                                         onChange={(e) => setFilterStatus(e.target.value)}
-                                        className="bg-transparent text-[10px] font-black uppercase tracking-widest focus:outline-none w-full text-slate-400"
+                                        className="bg-transparent text-[10px] font-semibold uppercase tracking-normal focus:outline-none w-full text-slate-400"
                                     >
                                         <option value="All Vendors">State: Universal</option>
                                         <option value="Approved">Auth: Secured</option>
@@ -207,13 +207,13 @@ const VendorApproval = () => {
                             </div>
                         </div>
 
-                        <div className={`rounded-[3rem] border overflow-hidden transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800 shadow-sm shadow-indigo-500/5' : 'bg-white border-slate-100 shadow-md'}`}>
+                        <div className={`rounded-[3rem] border overflow-hidden transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800 shadow-sm shadow-blue-500/5' : 'bg-white border-slate-100 shadow-md'}`}>
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left border-collapse">
                                     <thead className={`border-b transition-colors duration-300 ${isDarkMode ? 'bg-slate-900/40 border-slate-800' : 'bg-slate-50/50 border-slate-100'}`}>
                                         <tr>
                                             {['Partner Identity', 'Transmission Endpoint', 'Security Status', 'Log Timestamp', 'Governance'].map(h => (
-                                                <th key={h} className="px-10 py-6 text-[10px] font-black text-slate-500 uppercase tracking-[3px] italic">{h}</th>
+                                                <th key={h} className="px-10 py-6 text-[10px] font-semibold text-slate-500 uppercase tracking-normal">{h}</th>
                                             ))}
                                         </tr>
                                     </thead>
@@ -232,31 +232,31 @@ const VendorApproval = () => {
                                                         initial={{ opacity: 0, x: -10 }}
                                                         animate={{ opacity: 1, x: 0 }}
                                                         transition={{ delay: index * 0.05 }}
-                                                        className={`group transition-all duration-300 ${isDarkMode ? 'hover:bg-indigo-500/5' : 'hover:bg-indigo-50/50'}`}
+                                                        className={`group transition-all duration-300 ${isDarkMode ? 'hover:bg-blue-500/5' : 'hover:bg-blue-50/50'}`}
                                                     >
                                                         <td className="px-10 py-8">
                                                             <div className="flex items-center gap-6">
-                                                                <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center font-black text-xl transition-all duration-500 ${isDarkMode ? 'bg-slate-900 border-slate-800 text-indigo-400 group-hover:border-indigo-500' : 'bg-white border-slate-100 text-indigo-600 group-hover:scale-105 shadow-sm'}`}>
+                                                                <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center font-semibold text-xl transition-all duration-500 ${isDarkMode ? 'bg-slate-900 border-slate-800 text-blue-400 group-hover:border-blue-500' : 'bg-white border-slate-100 text-blue-600 group-hover:scale-105 shadow-sm'}`}>
                                                                     {(vendor.shop_name || '?').charAt(0).toUpperCase()}
                                                                 </div>
                                                                 <div>
-                                                                    <div className={`text-base font-black italic tracking-tighter ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{vendor.shop_name}</div>
-                                                                    <div className="text-[9px] text-slate-500 font-black uppercase tracking-[2px] mt-1">VID #{vendor.id}</div>
+                                                                    <div className={`text-base font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{vendor.shop_name}</div>
+                                                                    <div className="text-[9px] text-slate-500 font-semibold uppercase tracking-normal mt-1">VID #{vendor.id}</div>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td className="px-10 py-8">
-                                                            <div className={`flex items-center gap-2.5 text-xs font-bold tracking-tight ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                                                            <div className={`flex items-center gap-2.5 text-xs font-bold tracking-normal ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                                                                 <Mail className="w-4 h-4 opacity-50" /> {vendor.user_email}
                                                             </div>
                                                         </td>
                                                         <td className="px-10 py-8">
-                                                            <span className={`px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest border transition-all italic ${getStatusColor(vendor)}`}>
+                                                            <span className={`px-4 py-2 rounded-xl text-[9px] font-semibold uppercase tracking-normal border transition-all ${getStatusColor(vendor)}`}>
                                                                 {vendor.is_blocked ? 'Restricted' : vendor.approval_status}
                                                             </span>
                                                         </td>
                                                         <td className="px-10 py-8">
-                                                            <div className={`flex items-center gap-2.5 text-xs font-bold tracking-tight ${isDarkMode ? 'text-slate-500' : 'text-slate-500'}`}>
+                                                            <div className={`flex items-center gap-2.5 text-xs font-bold tracking-normal ${isDarkMode ? 'text-slate-500' : 'text-slate-500'}`}>
                                                                 <Clock className="w-4 h-4 opacity-50" /> {new Date(vendor.created_at).toLocaleDateString()}
                                                             </div>
                                                         </td>
@@ -264,7 +264,7 @@ const VendorApproval = () => {
                                                             <div className="flex items-center gap-3">
                                                                 <button
                                                                     onClick={() => navigate(`/vendors/review/${vendor.id}`)}
-                                                                    className={`p-3 rounded-2xl transition-all border ${isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white hover:border-indigo-500/50' : 'bg-white border-slate-200 text-slate-400 hover:text-indigo-600 shadow-sm'}`}
+                                                                    className={`p-3 rounded-2xl transition-all border ${isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white hover:border-blue-500/50' : 'bg-white border-slate-200 text-slate-400 hover:text-blue-600 shadow-sm'}`}
                                                                     title="Inspect Profile"
                                                                 >
                                                                     <ArrowRight className="w-5 h-5" />
@@ -272,7 +272,7 @@ const VendorApproval = () => {
                                                                 {vendor.approval_status === 'approved' && !vendor.is_blocked && (
                                                                     <button
                                                                         onClick={() => handleActionClick(vendor, 'Block')}
-                                                                        className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all border shadow-lg shadow-rose-500/5 ${isDarkMode ? 'bg-rose-500/10 text-rose-400 border-rose-500/20 hover:bg-rose-500 hover:text-white' : 'bg-rose-50 text-rose-600 border-rose-100 hover:bg-rose-600 hover:text-white'}`}
+                                                                        className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-[9px] font-semibold uppercase tracking-normal transition-all border shadow-lg shadow-rose-500/5 ${isDarkMode ? 'bg-rose-500/10 text-rose-400 border-rose-500/20 hover:bg-rose-500 hover:text-white' : 'bg-rose-50 text-rose-600 border-rose-100 hover:bg-rose-600 hover:text-white'}`}
                                                                     >
                                                                         <Ban className="w-4 h-4" /> Block
                                                                     </button>
@@ -280,7 +280,7 @@ const VendorApproval = () => {
                                                                 {vendor.is_blocked && (
                                                                     <button
                                                                         onClick={() => handleActionClick(vendor, 'Unblock')}
-                                                                        className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all border shadow-lg shadow-emerald-500/5 ${isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-500 hover:text-white' : 'bg-emerald-50 text-emerald-600 border-emerald-100 hover:bg-emerald-600 hover:text-white'}`}
+                                                                        className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-[9px] font-semibold uppercase tracking-normal transition-all border shadow-lg shadow-emerald-500/5 ${isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-500 hover:text-white' : 'bg-emerald-50 text-emerald-600 border-emerald-100 hover:bg-emerald-600 hover:text-white'}`}
                                                                     >
                                                                         <CheckCircle className="w-4 h-4" /> Restore
                                                                     </button>
@@ -300,8 +300,8 @@ const VendorApproval = () => {
                                                             <div className={`w-28 h-28 rounded-[3.5rem] flex items-center justify-center mb-8 border transition-all duration-500 ${isDarkMode ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-100'}`}>
                                                                 <SearchX className="w-14 h-14 text-slate-300/30" />
                                                             </div>
-                                                            <h3 className={`text-xl font-black italic uppercase tracking-tighter ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Registry Empty</h3>
-                                                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-2 max-w-xs">No merchant profiles matched the current security filters in this domain.</p>
+                                                            <h3 className={`text-xl font-semibold uppercase tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Registry Empty</h3>
+                                                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-normal mt-2 max-w-xs">No merchant profiles matched the current security filters in this domain.</p>
                                                         </div>
                                                     </td>
                                                 </motion.tr>
@@ -311,10 +311,10 @@ const VendorApproval = () => {
                                 </table>
                             </div>
                             <div className={`px-10 py-8 flex items-center justify-between border-t transition-colors duration-300 ${isDarkMode ? 'bg-slate-900/30 border-slate-800' : 'bg-slate-50/50 border-slate-100'}`}>
-                                <div className="text-[9px] font-black text-slate-500 uppercase tracking-[4px]">
+                                <div className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal">
                                     Registry Node Synchronized Node_02
                                 </div>
-                                <div className="flex items-center gap-4 text-[9px] font-black text-slate-500 tracking-[4px] uppercase">
+                                <div className="flex items-center gap-4 text-[9px] font-semibold text-slate-500 tracking-normal uppercase">
                                     Auth Secured <ShieldCheck className="w-4 h-4 text-emerald-500" />
                                 </div>
                             </div>
@@ -340,20 +340,20 @@ const VendorApproval = () => {
                             <div className={`w-20 h-20 rounded-[2rem] flex items-center justify-center mb-10 border mx-auto ${pendingAction?.action === 'Block' ? 'bg-rose-500/10 border-rose-500/20' : 'bg-emerald-500/10 border-emerald-500/20'}`}>
                                 <AlertTriangle className={`w-10 h-10 ${pendingAction?.action === 'Block' ? 'text-rose-500' : 'text-emerald-500'}`} />
                             </div>
-                            <h2 className={`text-2xl font-black text-center mb-3 tracking-tight italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{pendingAction?.action === 'Block' ? 'Security Lock' : 'Access Restored'}</h2>
-                            <p className="text-[10px] text-slate-500 text-center font-bold leading-relaxed mb-10 px-4 uppercase tracking-widest">
+                            <h2 className={`text-2xl font-semibold text-center mb-3 tracking-normal uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{pendingAction?.action === 'Block' ? 'Security Lock' : 'Access Restored'}</h2>
+                            <p className="text-[10px] text-slate-500 text-center font-bold leading-relaxed mb-10 px-4 uppercase tracking-normal">
                                 You are authorizing a protocol change for <span className={`${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{pendingAction?.vendor.shop_name}</span>. This event will be logged in the security audit trail.
                             </p>
                             <div className="flex flex-col gap-4">
                                 <button
                                     onClick={confirmAction}
-                                    className={`w-full py-5 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl transition-all ${pendingAction?.action === 'Block' ? 'bg-rose-600 shadow-rose-900/40 hover:bg-rose-500' : 'bg-indigo-600 shadow-indigo-900/40 hover:bg-indigo-500 hover:scale-[1.02]'}`}
+                                    className={`w-full py-5 text-white rounded-2xl text-[10px] font-semibold uppercase tracking-normal shadow-xl transition-all ${pendingAction?.action === 'Block' ? 'bg-rose-600 shadow-rose-900/40 hover:bg-rose-500' : 'bg-blue-600 shadow-blue-900/40 hover:bg-blue-500 hover:scale-[1.02]'}`}
                                 >
                                     Confirm Authorization
                                 </button>
                                 <button
                                     onClick={() => setIsActionModalOpen(false)}
-                                    className={`w-full py-5 border rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all ${isDarkMode ? 'bg-slate-800 border-slate-700 text-slate-400 hover:bg-slate-700' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50'}`}
+                                    className={`w-full py-5 border rounded-2xl text-[10px] font-semibold uppercase tracking-normal transition-all ${isDarkMode ? 'bg-slate-800 border-slate-700 text-slate-400 hover:bg-slate-700' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50'}`}
                                 >
                                     Abort Operation
                                 </button>

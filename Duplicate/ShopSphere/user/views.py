@@ -41,7 +41,40 @@ def register_api(request):
         return Response(serializer.errors, status=400)
     return render(request, "user_register.html", {"error": serializer.errors})
 
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def check_email_exists(request):
+    email = request.data.get('email')
+    if not email:
+        return Response({"error": "Email is required"}, status=400)
+    
+    user = AuthUser.objects.filter(email=email).first()
+    if user:
+        role_label = {
+            'delivery': 'delivery agent',
+            'vendor': 'vendor',
+            'customer': 'customer',
+            'admin': 'administrator'
+        }.get(user.role, user.role)
+
+        # Specifically for the delivery agent onboarding request
+        # We only block if the account is ALREADY a delivery agent.
+        # Customers are allowed to proceed and upgrade to delivery agents.
+        if user.role == 'delivery':
+             return Response({
+                "exists": True,
+                "error": "This account is already registered as a delivery agent."
+            }, status=200)
+
+        # For any other role (customer, vendor, etc.), we don't treat it as "exists" for the
+        # delivery registration flow, so they can proceed.
+        return Response({"exists": False}, status=200)
+
+    
+    return Response({"exists": False}, status=200)
+
 @api_view(['GET', 'POST'])
+@authentication_classes([])
 @permission_classes([AllowAny])
 def login_api(request):
     if request.method == 'GET':
@@ -50,6 +83,7 @@ def login_api(request):
     # support both JSON API clients (username/email) and HTML form
     username_or_email = request.data.get('email') or request.data.get('username')
     password = request.data.get('password')
+
 
     auth_identifier = username_or_email
     # If user provided a username instead of an email, resolve to the underlying email
@@ -61,6 +95,9 @@ def login_api(request):
         except AuthUser.DoesNotExist:
             auth_identifier = None
 
+    # First check if user exists to provide better debug info (optional, but helps troubleshooting)
+    user_exists = AuthUser.objects.filter(email=auth_identifier).exists()
+    
     user = authenticate(username=auth_identifier, password=password)
 
     if user:
@@ -96,6 +133,8 @@ def login_api(request):
                         "error": f"Your delivery account has been restricted. Reason: {profile.blocked_reason or 'Policy violation'}",
                         "status": "blocked"
                     }, status=403)
+            else:
+                return Response({"error": "Delivery profile not found for this account."}, status=404)
 
         elif user.role == 'vendor':
             if hasattr(user, 'vendor_profile'):
@@ -135,7 +174,9 @@ def login_api(request):
         else:
             return redirect('user_products')
 
-    return Response({"error": "Invalid credentials"}, status=401)
+    if user_exists:
+        return Response({"error": "Incorrect password. Please try again."}, status=401)
+    return Response({"error": "No account found with this email."}, status=401)
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def google_login_api(request):
@@ -242,8 +283,12 @@ def home_api(request):
             # Exact product-ID lookup
             products_qs = products_qs.filter(id=int(search))
         else:
-            # Name / description contains
-            products_qs = products_qs.filter(name__icontains=search)
+            # Name / category / description contains
+            products_qs = products_qs.filter(
+                Q(name__icontains=search) |
+                Q(category__icontains=search) |
+                Q(description__icontains=search)
+            )
         
         # Increment search_count for found items (cap to prevent mass updates)
         try:
@@ -613,7 +658,7 @@ def my_orders(request):
     orders = Order.objects.filter(user=request.user).order_by('-created_at')
     
     if request.accepted_renderer.format == 'json':
-        serializer = OrderSerializer(orders, many=True)
+        serializer = OrderSerializer(orders, many=True, context={'request': request})
         return Response(serializer.data)
         
     return render(request, "my_orders.html", {"orders": orders})
@@ -995,7 +1040,8 @@ def get_trending_products(request):
     # Trending considers search count and ratings
     trending = Product.objects.filter(
         status__in=['active', 'approved'],
-        is_blocked=False
+        is_blocked=False,
+        average_rating__gt=3
     ).order_by('-search_count', '-total_reviews', '-average_rating')[:12]
     
     serializer = ProductSerializer(trending, many=True, context={'request': request})

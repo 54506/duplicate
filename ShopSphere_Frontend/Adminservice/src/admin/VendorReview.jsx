@@ -119,15 +119,15 @@ const VendorReview = () => {
                         <motion.div
                             animate={{ rotate: 360 }}
                             transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                            className={`w-16 h-16 border-4 rounded-full shadow-2xl ${isDarkMode ? 'border-slate-800 border-t-indigo-500' : 'border-slate-100 border-t-indigo-600'}`}
+                            className={`w-16 h-16 border-4 rounded-full shadow-2xl ${isDarkMode ? 'border-slate-800 border-t-blue-500' : 'border-slate-100 border-t-blue-600'}`}
                         />
                         <div className="absolute inset-0 flex items-center justify-center">
-                            <ShieldCheck className={`w-6 h-6 ${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}`} />
+                            <ShieldCheck className={`w-6 h-6 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
                         </div>
                     </div>
                     <div className="text-center">
-                        <p className={`text-[10px] font-black uppercase tracking-[4px] mb-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Synchronizing Identity</p>
-                        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Pulling Node_{id} Metadata...</p>
+                        <p className={`text-[10px] font-semibold uppercase tracking-normal mb-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Synchronizing Identity</p>
+                        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-normal">Pulling Node_{id} Metadata...</p>
                     </div>
                 </div>
             </div>
@@ -141,11 +141,11 @@ const VendorReview = () => {
                     <div className={`w-28 h-28 rounded-[3.5rem] border shadow-xl flex items-center justify-center mx-auto mb-10 ${isDarkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-100'}`}>
                         <AlertTriangle className="w-12 h-12 text-amber-500" />
                     </div>
-                    <h2 className={`text-2xl font-black mb-3 tracking-tighter italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Node Offline</h2>
-                    <p className="text-[10px] text-slate-500 font-bold leading-relaxed mb-12 uppercase tracking-widest">The requested merchant identity is no longer broadcasting in this domain.</p>
+                    <h2 className={`text-2xl font-semibold mb-3 tracking-normal uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Node Offline</h2>
+                    <p className="text-[10px] text-slate-500 font-bold leading-relaxed mb-12 uppercase tracking-normal">The requested merchant identity is no longer broadcasting in this domain.</p>
                     <button
                         onClick={() => navigate('/vendors')}
-                        className={`w-full py-5 rounded-[2rem] text-[10px] font-black uppercase tracking-[0.2em] shadow-2xl transition-all ${isDarkMode ? 'bg-indigo-600 text-white shadow-indigo-900/40 hover:bg-indigo-500' : 'bg-slate-900 text-white shadow-slate-200 hover:scale-105'}`}
+                        className={`w-full py-5 rounded-[2rem] text-[10px] font-semibold uppercase tracking-normal shadow-2xl transition-all ${isDarkMode ? 'bg-blue-600 text-white shadow-blue-900/40 hover:bg-blue-500' : 'bg-slate-900 text-white shadow-slate-200 hover:scale-105'}`}
                     >
                         Return to Mainframe
                     </button>
@@ -166,25 +166,25 @@ const VendorReview = () => {
             <div className="flex-1 flex flex-col min-w-0">
                 <header className={`border-b px-8 h-20 flex items-center justify-between sticky top-0 z-20 transition-all duration-300 ${isDarkMode ? 'bg-[#0f172a]/80 border-slate-800 backdrop-blur-md' : 'bg-white border-slate-100 shadow-sm'}`}>
                     <div className="flex items-center gap-4">
-                        <button onClick={() => navigate(-1)} className={`p-2.5 rounded-xl border transition-all ${isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white' : 'bg-white border-slate-200 text-slate-400 hover:text-indigo-600 shadow-sm'}`}>
+                        <button onClick={() => navigate(-1)} className={`p-2.5 rounded-xl border transition-all ${isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white' : 'bg-white border-slate-200 text-slate-400 hover:text-blue-600 shadow-sm'}`}>
                             <ArrowLeft className="w-5 h-5" />
                         </button>
                         <div className={`w-px h-6 hidden sm:block mx-2 ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`} />
                         <div>
                             <div className="flex items-center gap-2">
-                                <h1 className={`text-lg font-black tracking-tight italic ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                                <h1 className={`text-lg font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                                     {vendor.approval_status === 'approved' ? 'Partner Audit' : 'Security Clearance'}
                                 </h1>
-                                <span className={`text-[8px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest ${isDarkMode ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' : 'bg-indigo-50 text-indigo-600 border border-indigo-100'}`}>Priority</span>
+                                <span className={`text-[8px] font-semibold px-1.5 py-0.5 rounded-md uppercase tracking-normal ${isDarkMode ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' : 'bg-blue-50 text-blue-600 border border-blue-100'}`}>Priority</span>
                             </div>
-                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest flex items-center gap-2">
+                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-normal flex items-center gap-2">
                                 <Zap className="w-3 h-3 text-amber-500" /> Identity Hub Node_{vendor.id}
                             </p>
                         </div>
                     </div>
                     <div className="flex items-center gap-6">
                         <NotificationBell />
-                        <div className={`hidden lg:flex items-center border rounded-lg px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest gap-2 ${isDarkMode ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-slate-50 border-slate-200 text-slate-500'}`}>
+                        <div className={`hidden lg:flex items-center border rounded-lg px-3 py-1.5 text-[10px] font-bold uppercase tracking-normal gap-2 ${isDarkMode ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-slate-50 border-slate-200 text-slate-500'}`}>
                             <ShieldCheck className="w-3.5 h-3.5" /> Registry Protocol 2.4
                         </div>
                     </div>
@@ -194,10 +194,10 @@ const VendorReview = () => {
                     <div className="max-w-6xl mx-auto space-y-8 pb-32">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                            className={`rounded-[3rem] p-8 md:p-12 border shadow-sm relative overflow-hidden transition-all duration-500 ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800 shadow-indigo-500/5' : 'bg-white border-slate-100 shadow-xl shadow-slate-200/50'}`}
+                            className={`rounded-[3rem] p-8 md:p-12 border shadow-sm relative overflow-hidden transition-all duration-500 ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800 shadow-blue-500/5' : 'bg-white border-slate-100 shadow-xl shadow-slate-200/50'}`}
                         >
                             <div className="flex flex-col md:flex-row items-center gap-10 relative z-10">
-                                <div className={`w-32 h-32 rounded-[2.5rem] flex items-center justify-center text-5xl font-black shadow-2xl transition-all duration-500 overflow-hidden hover:scale-110 ${isDarkMode ? 'bg-indigo-600 text-white shadow-indigo-900/40' : 'bg-gradient-to-br from-indigo-500 to-indigo-700 text-white shadow-indigo-200'}`}>
+                                <div className={`w-32 h-32 rounded-[2.5rem] flex items-center justify-center text-5xl font-semibold shadow-2xl transition-all duration-500 overflow-hidden hover:scale-110 ${isDarkMode ? 'bg-blue-600 text-white shadow-blue-900/40' : 'bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-blue-200'}`}>
                                     {vendor.user_profile_image ? (
                                         <img src={getMediaUrl(vendor.user_profile_image)} alt="Profile" className="w-full h-full object-cover" />
                                     ) : (
@@ -206,25 +206,25 @@ const VendorReview = () => {
                                 </div>
                                 <div className="flex-1 text-center md:text-left space-y-4">
                                     <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
-                                        <span className={`px-5 py-1.5 rounded-xl text-[9px] font-black uppercase tracking-[2px] border transition-all italic ${vendor.is_blocked ? 'bg-rose-500/10 text-rose-500 border-rose-500/20' :
+                                        <span className={`px-5 py-1.5 rounded-xl text-[9px] font-semibold uppercase tracking-normal border transition-all ${vendor.is_blocked ? 'bg-rose-500/10 text-rose-500 border-rose-500/20' :
                                             vendor.approval_status === 'approved' ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' :
                                                 'bg-amber-500/10 text-amber-500 border-amber-500/20'
                                             }`}>
                                             {vendor.is_blocked ? 'Restricted' : vendor.approval_status}
                                         </span>
-                                        <span className={`text-[9px] font-black uppercase tracking-[2px] px-5 py-1.5 rounded-xl border transition-all ${isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-500' : 'bg-slate-50 border-slate-100 text-slate-400'}`}>Hash: {vendor.id}</span>
+                                        <span className={`text-[9px] font-semibold uppercase tracking-normal px-5 py-1.5 rounded-xl border transition-all ${isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-500' : 'bg-slate-50 border-slate-100 text-slate-400'}`}>Hash: {vendor.id}</span>
                                     </div>
-                                    <h2 className={`text-4xl font-black tracking-tighter italic ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{vendor.shop_name}</h2>
-                                    <p className={`font-bold max-w-2xl text-xs leading-relaxed uppercase tracking-widest ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>{vendor.shop_description || "Authenticated Merchant Node - No additional broadcast description provided."}</p>
+                                    <h2 className={`text-4xl font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{vendor.shop_name}</h2>
+                                    <p className={`font-bold max-w-2xl text-xs leading-relaxed uppercase tracking-normal ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>{vendor.shop_description || "Authenticated Merchant Node - No additional broadcast description provided."}</p>
                                 </div>
                                 <div className="hidden lg:flex flex-col items-end gap-3 text-right">
                                     <div className="space-y-1">
-                                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-[2px]">Onboarding Timestamp</p>
-                                        <p className={`text-base font-black italic tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{new Date(vendor.created_at).toLocaleDateString(undefined, { dateStyle: 'long' })}</p>
+                                        <p className="text-[9px] font-semibold text-slate-400 uppercase tracking-normal">Onboarding Timestamp</p>
+                                        <p className={`text-base font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{new Date(vendor.created_at).toLocaleDateString(undefined, { dateStyle: 'long' })}</p>
                                     </div>
                                     <button
                                         onClick={() => setIsDocModalOpen(true)}
-                                        className={`mt-4 px-8 py-3.5 rounded-2xl text-[9px] font-black uppercase tracking-[2px] transition-all flex items-center gap-3 border shadow-lg ${isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white hover:border-indigo-500' : 'bg-white border-slate-200 text-slate-500 hover:text-indigo-600 hover:border-indigo-600 shadow-slate-200'}`}
+                                        className={`mt-4 px-8 py-3.5 rounded-2xl text-[9px] font-semibold uppercase tracking-normal transition-all flex items-center gap-3 border shadow-lg ${isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white hover:border-blue-500' : 'bg-white border-slate-200 text-slate-500 hover:text-blue-600 hover:border-blue-600 shadow-slate-200'}`}
                                     >
                                         <FileText className="w-4 h-4" /> Inspect Registry Files
                                     </button>
@@ -235,7 +235,7 @@ const VendorReview = () => {
                                 <div className={`mt-10 border rounded-[2rem] p-6 flex items-start gap-5 transition-all duration-300 ${isDarkMode ? 'bg-rose-500/5 border-rose-500/10' : 'bg-rose-50/50 border-rose-100'}`}>
                                     <AlertTriangle className="w-5 h-5 text-rose-500 mt-1" />
                                     <div>
-                                        <p className="text-[10px] font-black text-rose-600 uppercase tracking-[3px] mb-2">Security Override Remarks</p>
+                                        <p className="text-[10px] font-semibold text-rose-600 uppercase tracking-normal mb-2">Security Override Remarks</p>
                                         <p className={`text-sm font-bold leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>{vendor.blocked_reason || vendor.rejection_reason}</p>
                                     </div>
                                 </div>
@@ -251,43 +251,43 @@ const VendorReview = () => {
                                 >
                                     <div className="flex items-center justify-between mb-12">
                                         <div className="flex items-center gap-4">
-                                            <div className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all group-hover:scale-110 ${isDarkMode ? 'bg-indigo-500/10 text-indigo-400' : 'bg-indigo-50 text-indigo-600'}`}>
+                                            <div className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all group-hover:scale-110 ${isDarkMode ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-50 text-blue-600'}`}>
                                                 <Building2 className="w-5 h-5" />
                                             </div>
-                                            <h3 className={`text-[11px] font-black uppercase tracking-[4px] italic ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>Merchant Core Protocol</h3>
+                                            <h3 className={`text-[11px] font-semibold uppercase tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>Merchant Core Protocol</h3>
                                         </div>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                                         <div className="space-y-2">
-                                            <label className="text-[9px] font-black text-slate-500 uppercase tracking-[2px] block">Entity Designation</label>
-                                            <p className={`text-base font-black italic tracking-tight ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.shop_name}</p>
+                                            <label className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal block">Entity Designation</label>
+                                            <p className={`text-base font-semibold tracking-normal ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.shop_name}</p>
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[9px] font-black text-slate-500 uppercase tracking-[2px] block">Sector Classification</label>
-                                            <p className={`text-[10px] font-black uppercase tracking-[3px] italic ${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>{vendor.business_type}</p>
+                                            <label className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal block">Sector Classification</label>
+                                            <p className={`text-[10px] font-semibold uppercase tracking-normal ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>{vendor.business_type}</p>
                                         </div>
                                         <div className="md:col-span-2 space-y-2">
-                                            <label className="text-[9px] font-black text-slate-500 uppercase tracking-[2px] block">Global Endpoint (HQ)</label>
+                                            <label className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal block">Global Endpoint (HQ)</label>
                                             <p className={`text-sm font-bold flex items-start gap-3 leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-700'}`}>
                                                 <MapPin className="w-4 h-4 text-slate-500 mt-1 flex-shrink-0" /> {vendor.address}
                                             </p>
                                         </div>
                                         <div className="space-y-2 p-5 rounded-3xl border transition-colors border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/40">
-                                            <label className="text-[9px] font-black text-slate-500 uppercase tracking-[2px] block">GST Authentication</label>
-                                            <p className={`text-sm font-black tracking-[2px] uppercase ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.gst_number || 'NULL'}</p>
+                                            <label className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal block">GST Authentication</label>
+                                            <p className={`text-sm font-semibold tracking-normal uppercase ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.gst_number || 'NULL'}</p>
                                         </div>
                                         <div className="space-y-2 p-5 rounded-3xl border transition-colors border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/40">
-                                            <label className="text-[9px] font-black text-slate-500 uppercase tracking-[2px] block">PAN Resource ID</label>
-                                            <p className={`text-sm font-black tracking-[2px] uppercase ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.pan_number || 'NULL'}</p>
+                                            <label className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal block">PAN Resource ID</label>
+                                            <p className={`text-sm font-semibold tracking-normal uppercase ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.pan_number || 'NULL'}</p>
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[9px] font-black text-slate-500 uppercase tracking-[2px] block">Legal Entity Name (PAN)</label>
-                                            <p className={`text-base font-black italic tracking-tight ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.pan_name || 'NOT VERIFIED'}</p>
+                                            <label className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal block">Legal Entity Name (PAN)</label>
+                                            <p className={`text-base font-semibold tracking-normal ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.pan_name || 'NOT VERIFIED'}</p>
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[9px] font-black text-slate-500 uppercase tracking-[2px] block">Logistics Tariff Base</label>
-                                            <p className={`text-lg font-black tracking-tighter italic ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}>₹{parseFloat(vendor.shipping_fee || 0).toFixed(2)}</p>
+                                            <label className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal block">Logistics Tariff Base</label>
+                                            <p className={`text-lg font-semibold tracking-normal ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}>₹{parseFloat(vendor.shipping_fee || 0).toFixed(2)}</p>
                                         </div>
                                     </div>
                                 </motion.section>
@@ -300,22 +300,22 @@ const VendorReview = () => {
                                         <div className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all group-hover:scale-110 ${isDarkMode ? 'bg-emerald-500/10 text-emerald-400' : 'bg-emerald-50 text-emerald-600'}`}>
                                             <ShieldCheck className="w-5 h-5" />
                                         </div>
-                                        <h3 className={`text-[11px] font-black uppercase tracking-[4px] italic ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>Settlement Node_ALPHA</h3>
+                                        <h3 className={`text-[11px] font-semibold uppercase tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>Settlement Node_ALPHA</h3>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                                         <div className="space-y-2">
-                                            <label className="text-[9px] font-black text-slate-500 uppercase tracking-[2px] block">Beneficiary Identity</label>
-                                            <p className={`text-base font-black italic tracking-tight ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.bank_holder_name || 'SECURITY_NULL'}</p>
+                                            <label className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal block">Beneficiary Identity</label>
+                                            <p className={`text-base font-semibold tracking-normal ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.bank_holder_name || 'SECURITY_NULL'}</p>
                                         </div>
                                         <div className="hidden md:block" />
                                         <div className="space-y-2">
-                                            <label className="text-[9px] font-black text-slate-500 uppercase tracking-[2px] block">Encryption Account String</label>
-                                            <p className={`text-base font-black tracking-[4px]  ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.bank_account_number || '********'}</p>
+                                            <label className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal block">Encryption Account String</label>
+                                            <p className={`text-base font-semibold tracking-normal  ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.bank_account_number || '********'}</p>
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[9px] font-black text-slate-500 uppercase tracking-[2px] block">Routing Code (IFSC)</label>
-                                            <p className={`text-sm font-black tracking-[4px] uppercase ${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>{vendor.bank_ifsc_code || 'NULL'}</p>
+                                            <label className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal block">Routing Code (IFSC)</label>
+                                            <p className={`text-sm font-semibold tracking-normal uppercase ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>{vendor.bank_ifsc_code || 'NULL'}</p>
                                         </div>
                                     </div>
                                 </motion.section>
@@ -325,28 +325,28 @@ const VendorReview = () => {
                                     className={`rounded-[3rem] p-10 border shadow-sm transition-all duration-500 group ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800 hover:bg-[#1e293b]/80' : 'bg-white border-slate-100 shadow-lg shadow-slate-200/50'}`}
                                 >
                                     <div className="flex items-center gap-4 mb-12">
-                                        <div className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all group-hover:scale-110 ${isDarkMode ? 'bg-indigo-500/10 text-indigo-400' : 'bg-indigo-50 text-indigo-600'}`}>
+                                        <div className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all group-hover:scale-110 ${isDarkMode ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-50 text-blue-600'}`}>
                                             <FileText className="w-5 h-5" />
                                         </div>
-                                        <h3 className={`text-[11px] font-black uppercase tracking-[4px] italic ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>Identity Verification Assets</h3>
+                                        <h3 className={`text-[11px] font-semibold uppercase tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>Identity Verification Assets</h3>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         {vendor.id_proof_file && (
                                             <div
-                                                className={`group p-6 rounded-3xl border flex items-center justify-between transition-all cursor-pointer ${isDarkMode ? 'bg-slate-900/50 border-slate-800 hover:bg-slate-900 hover:border-indigo-500/50' : 'bg-slate-50 border-slate-100 hover:bg-white hover:shadow-xl hover:border-indigo-200'}`}
+                                                className={`group p-6 rounded-3xl border flex items-center justify-between transition-all cursor-pointer ${isDarkMode ? 'bg-slate-900/50 border-slate-800 hover:bg-slate-900 hover:border-blue-500/50' : 'bg-slate-50 border-slate-100 hover:bg-white hover:shadow-xl hover:border-blue-200'}`}
                                                 onClick={() => window.open(getMediaUrl(vendor.id_proof_file), '_blank')}
                                             >
                                                 <div className="flex items-center gap-5">
-                                                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition-all group-hover:scale-110 ${isDarkMode ? 'bg-slate-800 border-slate-700 text-indigo-400' : 'bg-white border-slate-200 text-indigo-600 shadow-sm'}`}>
+                                                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition-all group-hover:scale-110 ${isDarkMode ? 'bg-slate-800 border-slate-700 text-blue-400' : 'bg-white border-slate-200 text-blue-600 shadow-sm'}`}>
                                                         <FileText className="w-6 h-6" />
                                                     </div>
                                                     <div>
-                                                        <p className={`text-xs font-black italic tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{vendor.id_type || 'Identity Proof'}</p>
-                                                        <p className="text-[9px] font-black text-slate-500 uppercase tracking-[2px]">{vendor.id_number || 'Official ID'}</p>
+                                                        <p className={`text-xs font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{vendor.id_type || 'Identity Proof'}</p>
+                                                        <p className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal">{vendor.id_number || 'Official ID'}</p>
                                                     </div>
                                                 </div>
-                                                <ExternalLink className={`w-4 h-4 opacity-0 group-hover:opacity-100 transition-all ${isDarkMode ? 'text-indigo-400' : 'text-indigo-500'}`} />
+                                                <ExternalLink className={`w-4 h-4 opacity-0 group-hover:opacity-100 transition-all ${isDarkMode ? 'text-blue-400' : 'text-blue-500'}`} />
                                             </div>
                                         )}
 
@@ -360,8 +360,8 @@ const VendorReview = () => {
                                                         <ShieldCheck className="w-6 h-6" />
                                                     </div>
                                                     <div>
-                                                        <p className={`text-xs font-black italic tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Tax Resource ID</p>
-                                                        <p className="text-[9px] font-black text-slate-500 uppercase tracking-[2px]">{vendor.pan_number || 'Tax Asset'}</p>
+                                                        <p className={`text-xs font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Tax Resource ID</p>
+                                                        <p className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal">{vendor.pan_number || 'Tax Asset'}</p>
                                                     </div>
                                                 </div>
                                                 <ExternalLink className={`w-4 h-4 opacity-0 group-hover:opacity-100 transition-all ${isDarkMode ? 'text-rose-400' : 'text-rose-500'}`} />
@@ -378,8 +378,8 @@ const VendorReview = () => {
                                                         <Zap className="w-6 h-6" />
                                                     </div>
                                                     <div>
-                                                        <p className={`text-xs font-black italic tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Compliance Bundle</p>
-                                                        <p className="text-[9px] font-black text-slate-500 uppercase tracking-[2px]">GSTIN / Merchant Trade License Artifacts</p>
+                                                        <p className={`text-xs font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Compliance Bundle</p>
+                                                        <p className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal">GSTIN / Merchant Trade License Artifacts</p>
                                                     </div>
                                                 </div>
                                                 <ExternalLink className={`w-4 h-4 opacity-0 group-hover:opacity-100 transition-all ${isDarkMode ? 'text-amber-400' : 'text-amber-500'}`} />
@@ -388,19 +388,19 @@ const VendorReview = () => {
 
                                         {vendor.selfie_with_id && (
                                             <div
-                                                className={`group p-6 rounded-3xl border flex items-center justify-between transition-all cursor-pointer md:col-span-2 ${isDarkMode ? 'bg-slate-900/50 border-slate-800 hover:bg-slate-900 hover:border-indigo-500/50' : 'bg-indigo-50/30 border-indigo-100 hover:bg-white hover:shadow-xl hover:border-indigo-200'}`}
+                                                className={`group p-6 rounded-3xl border flex items-center justify-between transition-all cursor-pointer md:col-span-2 ${isDarkMode ? 'bg-slate-900/50 border-slate-800 hover:bg-slate-900 hover:border-blue-500/50' : 'bg-blue-50/30 border-blue-100 hover:bg-white hover:shadow-xl hover:border-blue-200'}`}
                                                 onClick={() => window.open(getMediaUrl(vendor.selfie_with_id), '_blank')}
                                             >
                                                 <div className="flex items-center gap-5">
-                                                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition-all group-hover:scale-110 ${isDarkMode ? 'bg-slate-800 border-slate-700 text-indigo-400' : 'bg-white border-indigo-200 text-indigo-600 shadow-sm'}`}>
+                                                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition-all group-hover:scale-110 ${isDarkMode ? 'bg-slate-800 border-slate-700 text-blue-400' : 'bg-white border-blue-200 text-blue-600 shadow-sm'}`}>
                                                         <Camera className="w-6 h-6" />
                                                     </div>
                                                     <div>
-                                                        <p className={`text-xs font-black italic tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Selfie Verification</p>
-                                                        <p className="text-[9px] font-black text-slate-500 uppercase tracking-[2px]">Face Match with ID Asset</p>
+                                                        <p className={`text-xs font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Selfie Verification</p>
+                                                        <p className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal">Face Match with ID Asset</p>
                                                     </div>
                                                 </div>
-                                                <ExternalLink className={`w-4 h-4 opacity-0 group-hover:opacity-100 transition-all ${isDarkMode ? 'text-indigo-400' : 'text-indigo-500'}`} />
+                                                <ExternalLink className={`w-4 h-4 opacity-0 group-hover:opacity-100 transition-all ${isDarkMode ? 'text-blue-400' : 'text-blue-500'}`} />
                                             </div>
                                         )}
                                     </div>
@@ -417,36 +417,36 @@ const VendorReview = () => {
                                         <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-colors ${isDarkMode ? 'bg-slate-900 border border-slate-800 text-slate-500' : 'bg-slate-50 text-slate-400 shadow-inner'}`}>
                                             <Mail className="w-4 h-4" />
                                         </div>
-                                        <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-[4px] italic">Endpoint Comms</h3>
+                                        <h3 className="text-[10px] font-semibold text-slate-500 uppercase tracking-normal">Endpoint Comms</h3>
                                     </div>
 
                                     <div className="space-y-6">
                                         <div className={`p-6 rounded-[2rem] border transition-all duration-300 ${isDarkMode ? 'bg-slate-900/50 border-slate-800 group-hover:bg-slate-900' : 'bg-slate-50/50 border-slate-100 group-hover:bg-white group-hover:shadow-md'}`}>
-                                            <p className="text-[9px] font-black text-slate-500 uppercase tracking-[2px] mb-2">Authenticated Email</p>
-                                            <p className={`text-sm font-black truncate italic ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.user_email || 'NULL_SIGNAL'}</p>
+                                            <p className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal mb-2">Authenticated Email</p>
+                                            <p className={`text-sm font-semibold truncate ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.user_email || 'NULL_SIGNAL'}</p>
                                         </div>
 
                                         <div className={`p-6 rounded-[2rem] border transition-all duration-300 ${isDarkMode ? 'bg-slate-900/50 border-slate-800 group-hover:bg-slate-900' : 'bg-slate-50/50 border-slate-100 group-hover:bg-white group-hover:shadow-md'}`}>
-                                            <p className="text-[9px] font-black text-slate-500 uppercase tracking-[2px] mb-2">Secure Link Hotline</p>
-                                            <p className={`text-sm font-black tracking-widest ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.user_phone || 'DISCONNECTED'}</p>
+                                            <p className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal mb-2">Secure Link Hotline</p>
+                                            <p className={`text-sm font-semibold tracking-normal ${isDarkMode ? 'text-slate-200' : 'text-slate-900'}`}>{vendor.user_phone || 'DISCONNECTED'}</p>
                                         </div>
                                     </div>
                                 </motion.section>
 
                                 <motion.section
                                     initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5 }}
-                                    className={`p-10 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group transition-all duration-700 cursor-help ${isDarkMode ? 'bg-gradient-to-br from-indigo-700 to-indigo-900 shadow-indigo-950/50' : 'bg-indigo-600 shadow-indigo-200'}`}
+                                    className={`p-10 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group transition-all duration-700 cursor-help ${isDarkMode ? 'bg-gradient-to-br from-blue-700 to-blue-900 shadow-blue-950/50' : 'bg-blue-600 shadow-blue-200'}`}
                                 >
                                     <div className="relative z-10">
                                         <div className="flex items-center gap-3 mb-6">
-                                            <ShieldCheck className="w-5 h-5 text-indigo-300" />
-                                            <span className="text-[10px] font-black uppercase tracking-[3px] text-indigo-100 italic">Core Compliance</span>
+                                            <ShieldCheck className="w-5 h-5 text-blue-300" />
+                                            <span className="text-[10px] font-semibold uppercase tracking-normal text-blue-100">Core Compliance</span>
                                         </div>
-                                        <p className="text-[11px] font-bold text-indigo-50/70 leading-relaxed mb-8 uppercase tracking-widest">Global merchant verification complete. All security parameters are currently within nominal operation ranges for Node_{vendor.id}.</p>
-                                        <div className="h-2 w-full bg-indigo-900/40 rounded-full overflow-hidden mb-2">
+                                        <p className="text-[11px] font-bold text-blue-50/70 leading-relaxed mb-8 uppercase tracking-normal">Global merchant verification complete. All security parameters are currently within nominal operation ranges for Node_{vendor.id}.</p>
+                                        <div className="h-2 w-full bg-blue-900/40 rounded-full overflow-hidden mb-2">
                                             <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1.5, delay: 1 }} className="h-full bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,0.8)]" />
                                         </div>
-                                        <div className="flex justify-between text-[8px] font-black uppercase tracking-widest text-indigo-300/80">
+                                        <div className="flex justify-between text-[8px] font-semibold uppercase tracking-normal text-blue-300/80">
                                             <span>Encryption Active</span>
                                             <span>Registry Synced</span>
                                         </div>
@@ -463,7 +463,7 @@ const VendorReview = () => {
                     <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
                         <div>
                             <h4 className={`text-base font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Administrative Governance</h4>
-                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">Decision finalized upon authentication</p>
+                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-normal mt-0.5">Decision finalized upon authentication</p>
                         </div>
 
                         <div className="flex items-center gap-4 w-full sm:w-auto">
@@ -471,7 +471,7 @@ const VendorReview = () => {
                                 <button
                                     onClick={() => handleActionClick('Blocked')}
                                     disabled={isActioning}
-                                    className={`flex-1 sm:flex-none px-8 py-3.5 border rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all disabled:opacity-50 ${isDarkMode ? 'bg-slate-900 border-slate-800 text-rose-400 hover:bg-rose-500/10 hover:border-rose-500/50' : 'bg-white border-slate-200 text-rose-600 hover:bg-rose-50 hover:border-rose-200'}`}
+                                    className={`flex-1 sm:flex-none px-8 py-3.5 border rounded-xl font-bold text-[10px] uppercase tracking-normal transition-all disabled:opacity-50 ${isDarkMode ? 'bg-slate-900 border-slate-800 text-rose-400 hover:bg-rose-500/10 hover:border-rose-500/50' : 'bg-white border-slate-200 text-rose-600 hover:bg-rose-50 hover:border-rose-200'}`}
                                 >
                                     Force Block
                                 </button>
@@ -481,7 +481,7 @@ const VendorReview = () => {
                                 <button
                                     onClick={() => handleActionClick('Unblocked')}
                                     disabled={isActioning}
-                                    className={`flex-1 sm:flex-none px-8 py-3.5 border rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all disabled:opacity-50 ${isDarkMode ? 'bg-slate-900 border-slate-800 text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-500/50' : 'bg-white border-slate-200 text-emerald-600 hover:bg-emerald-50 hover:border-emerald-200'}`}
+                                    className={`flex-1 sm:flex-none px-8 py-3.5 border rounded-xl font-bold text-[10px] uppercase tracking-normal transition-all disabled:opacity-50 ${isDarkMode ? 'bg-slate-900 border-slate-800 text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-500/50' : 'bg-white border-slate-200 text-emerald-600 hover:bg-emerald-50 hover:border-emerald-200'}`}
                                 >
                                     Unblock Access
                                 </button>
@@ -491,7 +491,7 @@ const VendorReview = () => {
                                 <button
                                     onClick={() => handleActionClick('Rejected')}
                                     disabled={isActioning}
-                                    className={`flex-1 sm:flex-none px-8 py-3.5 border rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all disabled:opacity-50 ${isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
+                                    className={`flex-1 sm:flex-none px-8 py-3.5 border rounded-xl font-bold text-[10px] uppercase tracking-normal transition-all disabled:opacity-50 ${isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
                                 >
                                     Reject Entry
                                 </button>
@@ -501,7 +501,7 @@ const VendorReview = () => {
                                 <button
                                     onClick={() => handleActionClick('Approved')}
                                     disabled={isActioning}
-                                    className={`flex-1 sm:flex-none px-10 py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-widest shadow-lg transition-all disabled:opacity-50 flex items-center justify-center gap-3 min-w-[200px] ${isDarkMode ? 'bg-indigo-600 text-white shadow-indigo-900/40 hover:bg-indigo-500' : 'bg-indigo-600 text-white shadow-indigo-100 hover:bg-indigo-700'}`}
+                                    className={`flex-1 sm:flex-none px-10 py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-normal shadow-lg transition-all disabled:opacity-50 flex items-center justify-center gap-3 min-w-[200px] ${isDarkMode ? 'bg-blue-600 text-white shadow-blue-900/40 hover:bg-blue-500' : 'bg-blue-600 text-white shadow-blue-100 hover:bg-blue-700'}`}
                                 >
                                     {isActioning ? (
                                         <>
@@ -510,7 +510,7 @@ const VendorReview = () => {
                                         </>
                                     ) : (
                                         <>
-                                            <ShieldCheck className="w-4 h-4 text-indigo-200" />
+                                            <ShieldCheck className="w-4 h-4 text-blue-200" />
                                             Publish Clearance
                                         </>
                                     )}
@@ -534,23 +534,23 @@ const VendorReview = () => {
                             initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
                             className={`rounded-[3rem] p-16 max-w-sm w-full relative z-10 shadow-2xl text-center border transition-colors ${isDarkMode ? 'bg-[#1e293b] border-slate-700 shadow-slate-950/50' : 'bg-white border-slate-200'}`}
                         >
-                            <div className={`w-28 h-28 rounded-[2.5rem] flex items-center justify-center mb-12 border mx-auto transition-colors ${pendingAction === 'Blocked' ? 'bg-rose-500/10 border-rose-500/20' : 'bg-indigo-500/10 border-indigo-500/20'}`}>
-                                {pendingAction === 'Blocked' ? <AlertTriangle className="w-14 h-14 text-rose-500" /> : <ShieldCheck className="w-14 h-14 text-indigo-500" />}
+                            <div className={`w-28 h-28 rounded-[2.5rem] flex items-center justify-center mb-12 border mx-auto transition-colors ${pendingAction === 'Blocked' ? 'bg-rose-500/10 border-rose-500/20' : 'bg-blue-500/10 border-blue-500/20'}`}>
+                                {pendingAction === 'Blocked' ? <AlertTriangle className="w-14 h-14 text-rose-500" /> : <ShieldCheck className="w-14 h-14 text-blue-500" />}
                             </div>
-                            <h2 className={`text-3xl font-black mb-6 tracking-tighter uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Review Execution</h2>
-                            <p className="text-sm text-slate-500 font-bold leading-relaxed mb-12 px-2 italic">
-                                Modifying partner status to <span className={`font-black uppercase tracking-[0.2em] underline decoration-indigo-600/40 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{pendingAction}</span>. Confirm?
+                            <h2 className={`text-3xl font-semibold mb-6 tracking-normal uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Review Execution</h2>
+                            <p className="text-sm text-slate-500 font-bold leading-relaxed mb-12 px-2">
+                                Modifying partner status to <span className={`font-semibold uppercase tracking-normal underline decoration-blue-600/40 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{pendingAction}</span>. Confirm?
                             </p>
                             <div className="flex flex-col gap-5">
                                 <button
                                     onClick={confirmAction}
-                                    className={`w-full py-5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${isDarkMode ? 'bg-indigo-600 text-white hover:bg-indigo-500 shadow-xl shadow-indigo-900/40' : 'bg-slate-900 text-white hover:bg-slate-800 shadow-xl shadow-slate-200'}`}
+                                    className={`w-full py-5 rounded-2xl text-[10px] font-semibold uppercase tracking-normal transition-all ${isDarkMode ? 'bg-blue-600 text-white hover:bg-blue-500 shadow-xl shadow-blue-900/40' : 'bg-slate-900 text-white hover:bg-slate-800 shadow-xl shadow-slate-200'}`}
                                 >
                                     Execute Order
                                 </button>
                                 <button
                                     onClick={() => setIsActionModalOpen(false)}
-                                    className={`w-full py-5 border rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${isDarkMode ? 'bg-slate-800 border-slate-700 text-slate-400 hover:bg-slate-700' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50'}`}
+                                    className={`w-full py-5 border rounded-2xl text-[10px] font-semibold uppercase tracking-normal transition-all ${isDarkMode ? 'bg-slate-800 border-slate-700 text-slate-400 hover:bg-slate-700' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50'}`}
                                 >
                                     Decline Operation
                                 </button>
@@ -575,10 +575,10 @@ const VendorReview = () => {
                         >
                             <div className={`p-8 border-b flex items-center justify-between transition-colors ${isDarkMode ? 'bg-slate-900/50 border-slate-800' : 'bg-slate-50/50 border-slate-100'}`}>
                                 <div>
-                                    <h2 className={`text-2xl font-black tracking-tight flex items-center gap-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                                        <ShieldCheck className="w-6 h-6 text-indigo-500" /> Verification Bundle
+                                    <h2 className={`text-2xl font-semibold tracking-normal flex items-center gap-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                                        <ShieldCheck className="w-6 h-6 text-blue-500" /> Verification Bundle
                                     </h2>
-                                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Official Documents for {vendor.shop_name}</p>
+                                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-normal mt-1">Official Documents for {vendor.shop_name}</p>
                                 </div>
                                 <button
                                     onClick={() => setIsDocModalOpen(false)}
@@ -592,8 +592,8 @@ const VendorReview = () => {
                                 {vendor.selfie_with_id && (
                                     <div className="space-y-4">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-1.5 h-6 bg-indigo-600 rounded-full" />
-                                            <h3 className={`text-xs font-black uppercase tracking-widest ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Selfie Confirmation</h3>
+                                            <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                                            <h3 className={`text-xs font-semibold uppercase tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Selfie Confirmation</h3>
                                         </div>
                                         <div className={`relative group rounded-3xl overflow-hidden border-4 shadow-xl max-w-2xl mx-auto ${isDarkMode ? 'border-slate-800 bg-slate-900' : 'border-slate-50 bg-slate-50'}`}>
                                             <img
@@ -608,18 +608,18 @@ const VendorReview = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     {vendor.id_proof_file && (
                                         <div className="space-y-4">
-                                            <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-widest px-2">Govt Issued ID ({vendor.id_type})</h3>
+                                            <h3 className="text-[10px] font-semibold text-slate-500 uppercase tracking-normal px-2">Govt Issued ID ({vendor.id_type})</h3>
                                             <div
-                                                className={`p-8 rounded-3xl border-2 border-dashed transition-all group cursor-pointer ${isDarkMode ? 'bg-slate-900/50 border-slate-800 hover:border-indigo-500/50 hover:bg-indigo-500/5' : 'bg-slate-50 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/30'}`}
+                                                className={`p-8 rounded-3xl border-2 border-dashed transition-all group cursor-pointer ${isDarkMode ? 'bg-slate-900/50 border-slate-800 hover:border-blue-500/50 hover:bg-blue-500/5' : 'bg-slate-50 border-slate-200 hover:border-blue-400 hover:bg-blue-50/30'}`}
                                                 onClick={() => window.open(getMediaUrl(vendor.id_proof_file), '_blank')}
                                             >
                                                 <div className="flex flex-col items-center text-center gap-4">
-                                                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform ${isDarkMode ? 'bg-slate-800 text-indigo-400' : 'bg-white text-indigo-600'}`}>
+                                                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform ${isDarkMode ? 'bg-slate-800 text-blue-400' : 'bg-white text-blue-600'}`}>
                                                         <FileText className="w-8 h-8" />
                                                     </div>
                                                     <div>
                                                         <p className={`font-bold text-sm mb-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>View ID Document</p>
-                                                        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Type: {vendor.id_type} · Ref: {vendor.id_number}</p>
+                                                        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-normal">Type: {vendor.id_type} · Ref: {vendor.id_number}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -628,7 +628,7 @@ const VendorReview = () => {
 
                                     {vendor.pan_card_file && (
                                         <div className="space-y-4">
-                                            <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-widest px-2">Tax Asset (PAN)</h3>
+                                            <h3 className="text-[10px] font-semibold text-slate-500 uppercase tracking-normal px-2">Tax Asset (PAN)</h3>
                                             <div
                                                 className={`p-8 rounded-3xl border-2 border-dashed transition-all group cursor-pointer ${isDarkMode ? 'bg-slate-900/50 border-slate-800 hover:border-rose-500/50 hover:bg-rose-500/5' : 'bg-slate-50 border-slate-200 hover:border-rose-400 hover:bg-rose-50/30'}`}
                                                 onClick={() => window.open(getMediaUrl(vendor.pan_card_file), '_blank')}
@@ -639,7 +639,7 @@ const VendorReview = () => {
                                                     </div>
                                                     <div>
                                                         <p className={`font-bold text-sm mb-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>View PAN Asset</p>
-                                                        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Name: {vendor.pan_name} · Ref: {vendor.pan_number}</p>
+                                                        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-normal">Name: {vendor.pan_name} · Ref: {vendor.pan_number}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -648,20 +648,20 @@ const VendorReview = () => {
 
                                     {vendor.additional_documents && (
                                         <div className="space-y-4 md:col-span-2">
-                                            <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-widest px-2">Supporting Evidence</h3>
+                                            <h3 className="text-[10px] font-semibold text-slate-500 uppercase tracking-normal px-2">Supporting Evidence</h3>
                                             <div
-                                                className={`p-8 rounded-3xl border-2 border-dashed transition-all group cursor-pointer ${isDarkMode ? 'bg-slate-900/50 border-slate-800 hover:border-orange-500/50 hover:bg-orange-500/5' : 'bg-orange-50 border-orange-200 hover:border-orange-400 hover:bg-orange-100/20'}`}
+                                                className={`p-8 rounded-3xl border-2 border-dashed transition-all group cursor-pointer ${isDarkMode ? 'bg-slate-900/50 border-slate-800 hover:border-blue-500/50 hover:bg-blue-500/5' : 'bg-blue-50 border-blue-200 hover:border-blue-400 hover:bg-blue-100/20'}`}
                                                 onClick={() => window.open(getMediaUrl(vendor.additional_documents), '_blank')}
                                             >
                                                 <div className="flex items-center gap-6">
-                                                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform ${isDarkMode ? 'bg-slate-800 text-orange-400' : 'bg-white text-orange-500'}`}>
+                                                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform ${isDarkMode ? 'bg-slate-800 text-blue-400' : 'bg-white text-blue-500'}`}>
                                                         <FileText className="w-8 h-8" />
                                                     </div>
                                                     <div className="flex-1">
                                                         <p className={`font-bold text-sm mb-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Verification Bundle (GSTIN/Trade)</p>
-                                                        <p className="text-[10px] text-orange-500 font-bold uppercase tracking-widest">Supplemental business verification documents</p>
+                                                        <p className="text-[10px] text-blue-500 font-bold uppercase tracking-normal">Supplemental business verification documents</p>
                                                     </div>
-                                                    <div className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-sm transition-colors ${isDarkMode ? 'bg-slate-800 text-white group-hover:bg-indigo-600' : 'bg-white text-slate-900 group-hover:bg-slate-900 group-hover:text-white'}`}>Open File ↗</div>
+                                                    <div className={`px-6 py-2 rounded-xl text-[10px] font-semibold uppercase tracking-normal shadow-sm transition-colors ${isDarkMode ? 'bg-slate-800 text-white group-hover:bg-blue-600' : 'bg-white text-slate-900 group-hover:bg-slate-900 group-hover:text-white'}`}>Open File ↗</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -672,7 +672,7 @@ const VendorReview = () => {
                             <div className={`p-8 border-t flex justify-end transition-colors ${isDarkMode ? 'bg-slate-900/50 border-slate-800' : 'bg-slate-50/30 border-slate-100'}`}>
                                 <button
                                     onClick={() => setIsDocModalOpen(false)}
-                                    className={`px-10 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${isDarkMode ? 'bg-slate-800 text-white hover:bg-slate-700' : 'bg-slate-900 text-white hover:bg-slate-800 shadow-xl shadow-slate-200'}`}
+                                    className={`px-10 py-4 rounded-2xl text-[10px] font-semibold uppercase tracking-normal transition-all ${isDarkMode ? 'bg-slate-800 text-white hover:bg-slate-700' : 'bg-slate-900 text-white hover:bg-slate-800 shadow-xl shadow-slate-200'}`}
                                 >
                                     Dismiss Profile Docs
                                 </button>

@@ -70,8 +70,8 @@ export default function DeletionRequests() {
         return (
             <div className={`flex items-center justify-center min-h-screen ${isDarkMode ? 'bg-[#0f172a]' : 'bg-[#F8FAFC]'}`}>
                 <div className="flex flex-col items-center gap-4">
-                    <div className="w-16 h-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-                    <p className={`text-[10px] font-black uppercase tracking-[4px] ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>Loading requests...</p>
+                    <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                    <p className={`text-[10px] font-semibold uppercase tracking-normal ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>Loading requests...</p>
                 </div>
             </div>
         );
@@ -84,20 +84,20 @@ export default function DeletionRequests() {
             <div className="flex-1 flex flex-col min-w-0 transition-all duration-300">
                 <header className={`border-b px-8 h-20 flex items-center justify-between sticky top-0 z-20 transition-all duration-300 ${isDarkMode ? 'bg-[#0f172a]/80 border-slate-800 backdrop-blur-md' : 'bg-white border-slate-100 shadow-sm'}`}>
                     <div className="flex items-center gap-4">
-                        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className={`p-2 rounded-xl border transition-all ${isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white' : 'bg-white border-slate-200 text-slate-400 hover:text-indigo-600 shadow-sm'}`}>
+                        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className={`p-2 rounded-xl border transition-all ${isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white' : 'bg-white border-slate-200 text-slate-400 hover:text-blue-600 shadow-sm'}`}>
                             {isSidebarOpen ? <PanelLeftClose className="w-5 h-5" /> : <PanelLeftOpen className="w-5 h-5" />}
                         </button>
                         <div>
                             <div className="flex items-center gap-2">
-                                <h1 className={`text-lg font-black tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Account Deletion Requests</h1>
-                                <span className={`text-[8px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest ${isDarkMode ? 'bg-rose-500/10 text-rose-500 border border-rose-500/20' : 'bg-rose-50 text-rose-600 border border-rose-100'}`}>Sensitive</span>
+                                <h1 className={`text-lg font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Account Deletion Requests</h1>
+                                <span className={`text-[8px] font-semibold px-1.5 py-0.5 rounded-md uppercase tracking-normal ${isDarkMode ? 'bg-rose-500/10 text-rose-500 border border-rose-500/20' : 'bg-rose-50 text-rose-600 border border-rose-100'}`}>Sensitive</span>
                             </div>
-                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Approve or reject account deletion requests from vendors and delivery agents</p>
+                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-normal">Approve or reject account deletion requests from vendors and delivery agents</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
                         <NotificationBell />
-                        <div className={`hidden lg:flex items-center border rounded-lg px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest gap-2 ${isDarkMode ? 'bg-rose-500/10 border-rose-500/20 text-rose-400' : 'bg-slate-50 border-slate-200 text-slate-500'}`}>
+                        <div className={`hidden lg:flex items-center border rounded-lg px-3 py-1.5 text-[10px] font-bold uppercase tracking-normal gap-2 ${isDarkMode ? 'bg-rose-500/10 border-rose-500/20 text-rose-400' : 'bg-slate-50 border-slate-200 text-slate-500'}`}>
                             <ShieldAlert className="w-3.5 h-3.5" /> High Priority
                         </div>
                     </div>
@@ -114,8 +114,8 @@ export default function DeletionRequests() {
                                 <div className={`w-24 h-24 rounded-full mx-auto mb-8 flex items-center justify-center transition-colors ${isDarkMode ? 'bg-slate-900 text-emerald-500/20' : 'bg-emerald-50 text-emerald-500/20'}`}>
                                     <CheckCircle size={48} />
                                 </div>
-                                <h2 className={`text-2xl font-black uppercase tracking-widest italic mb-4 ${isDarkMode ? 'text-slate-300' : 'text-slate-900'}`}>All Clear</h2>
-                                <p className="text-slate-500 text-sm uppercase tracking-wider font-bold max-w-md mx-auto">No pending deletion requests at the moment.</p>
+                                <h2 className={`text-2xl font-semibold uppercase tracking-normal mb-4 ${isDarkMode ? 'text-slate-300' : 'text-slate-900'}`}>All Clear</h2>
+                                <p className="text-slate-500 text-sm uppercase tracking-normal font-bold max-w-md mx-auto">No pending deletion requests at the moment.</p>
                             </motion.div>
                         ) : (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -132,33 +132,33 @@ export default function DeletionRequests() {
 
                                             <div className="relative z-10 flex flex-col h-full">
                                                 <div className="flex justify-between items-start mb-10">
-                                                    <div className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 ${request.type === 'vendor'
-                                                        ? (isDarkMode ? 'bg-indigo-500/10 text-indigo-400' : 'bg-indigo-50 text-indigo-600')
-                                                        : (isDarkMode ? 'bg-orange-500/10 text-orange-400' : 'bg-orange-50 text-orange-600')
+                                                    <div className={`px-4 py-2 rounded-xl text-[10px] font-semibold uppercase tracking-normal flex items-center gap-2 ${request.type === 'vendor'
+                                                        ? (isDarkMode ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-50 text-blue-600')
+                                                        : (isDarkMode ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-50 text-blue-600')
                                                         }`}>
                                                         {request.type === 'vendor' ? <Store size={12} /> : <User size={12} />}
                                                         {request.type}
                                                     </div>
-                                                    <div className="flex items-center gap-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
+                                                    <div className="flex items-center gap-2 text-[10px] font-semibold text-slate-500 uppercase tracking-normal">
                                                         <Clock size={12} />
                                                         {new Date(request.requested_at).toLocaleDateString()}
                                                     </div>
                                                 </div>
 
                                                 <div className="mb-10">
-                                                    <h3 className={`text-2xl font-black tracking-tight italic uppercase mb-2 truncate group-hover:text-rose-500 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{request.name}</h3>
-                                                    <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                                                    <h3 className={`text-2xl font-semibold tracking-normal uppercase mb-2 truncate group-hover:text-rose-500 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{request.name}</h3>
+                                                    <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-normal text-slate-500">
                                                         <Mail size={12} className="opacity-50" />
                                                         {request.email}
                                                     </div>
                                                 </div>
 
                                                 <div className={`p-6 rounded-3xl border mb-10 flex-grow transition-colors ${isDarkMode ? 'bg-slate-900/50 border-slate-800 group-hover:border-slate-700' : 'bg-slate-50 border-transparent group-hover:bg-slate-100'}`}>
-                                                    <p className="text-[9px] font-black text-slate-500 uppercase tracking-[4px] mb-4 flex items-center gap-2 italic">
+                                                    <p className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal mb-4 flex items-center gap-2">
                                                         <FileText size={12} />
                                                         Reason for Deletion
                                                     </p>
-                                                    <p className={`text-sm italic leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                                                    <p className={`text-sm leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                                                         "{request.reason || "No reason provided."}"
                                                     </p>
                                                 </div>
@@ -166,13 +166,13 @@ export default function DeletionRequests() {
                                                 <div className="flex gap-4">
                                                     <button
                                                         onClick={() => handleAction(request.type, request.id, 'approve')}
-                                                        className="flex-1 py-5 bg-rose-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-rose-500 transition-all shadow-xl shadow-rose-900/20 flex items-center justify-center gap-2 active:scale-95 group"
+                                                        className="flex-1 py-5 bg-rose-600 text-white rounded-2xl text-[10px] font-semibold uppercase tracking-normal hover:bg-rose-500 transition-all shadow-xl shadow-rose-900/20 flex items-center justify-center gap-2 active:scale-95 group"
                                                     >
                                                         <ShieldAlert size={14} className="group-hover:animate-pulse" /> Approve Deletion
                                                     </button>
                                                     <button
                                                         onClick={() => handleAction(request.type, request.id, 'deny')}
-                                                        className={`flex-1 py-5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 active:scale-95 ${isDarkMode
+                                                        className={`flex-1 py-5 rounded-2xl text-[10px] font-semibold uppercase tracking-normal transition-all flex items-center justify-center gap-2 active:scale-95 ${isDarkMode
                                                             ? 'bg-slate-900 border border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-white'
                                                             : 'bg-white border border-slate-200 text-slate-500 hover:bg-slate-50 hover:border-slate-300'
                                                             }`}

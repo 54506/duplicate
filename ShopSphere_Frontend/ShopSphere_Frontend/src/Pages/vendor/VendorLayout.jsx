@@ -17,6 +17,9 @@ export default function VendorLayout() {
         setVendor(data);
       } catch (error) {
         console.error("Error fetching vendor profile:", error);
+        if (error.response?.status === 404) {
+          navigate('/account-verification');
+        }
       }
     };
     fetchProfile();
@@ -38,10 +41,10 @@ export default function VendorLayout() {
         {/* TOP HEADER */}
         <header className={`h-16 md:h-20 backdrop-blur-xl border-b flex items-center justify-between px-4 md:px-8 sticky top-0 z-20 shadow-sm transition-colors duration-300 ${isDarkMode ? 'bg-[#0f172a]/80 border-slate-800' : 'bg-white/80 border-slate-200'}`}>
           <div className="truncate pr-4 pl-12 md:pl-0">
-            <h1 className={`text-base md:text-xl font-black tracking-tight italic uppercase truncate ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+            <h1 className={`text-base md:text-xl font-semibold tracking-normal  uppercase truncate ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
               {vendor ? vendor.shop_name : "My Store"}
             </h1>
-            <p className="text-[9px] md:text-[10px] font-black text-gray-500 uppercase tracking-[2px]">Vendor Dashboard</p>
+            <p className="text-[9px] md:text-[10px] font-semibold text-gray-500 uppercase tracking-normal">Vendor Dashboard</p>
           </div>
 
           <div className="flex items-center gap-3 md:gap-5 flex-shrink-0">
@@ -50,7 +53,7 @@ export default function VendorLayout() {
               onClick={toggleTheme}
               className={`p-2 rounded-xl border transition-all duration-300 flex items-center justify-center group ${isDarkMode
                 ? 'bg-slate-800 border-slate-700 text-amber-400 hover:border-amber-400/50'
-                : 'bg-slate-50 border-slate-200 text-indigo-600 hover:bg-white hover:border-indigo-300'}`}
+                : 'bg-slate-50 border-slate-200 text-teal-500 hover:bg-white hover:border-indigo-300'}`}
             >
               {isDarkMode ? <SunIcon className="h-5 w-5 md:h-6 md:w-6" /> : <MoonIcon className="h-5 w-5 md:h-6 md:w-6" />}
             </button>
@@ -59,14 +62,14 @@ export default function VendorLayout() {
 
             <Link
               to="/vendorprofile"
-              className={`flex items-center gap-2 p-1 pr-3 md:pr-4 border rounded-2xl transition-all group ${isDarkMode ? 'bg-white/5 border-white/5 hover:bg-white/10' : 'bg-white border-slate-200 hover:border-indigo-200 shadow-sm'}`}
+              className={`flex items-center gap-2 p-1 pr-3 md:pr-4 border rounded-2xl transition-all group ${isDarkMode ? 'bg-slate-900 border-slate-800 hover:bg-white/10' : 'bg-white border-slate-200 hover:border-indigo-200 shadow-sm'}`}
             >
-              <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-xl flex items-center justify-center text-white font-bold group-hover:scale-105 transition-transform shadow-lg shadow-indigo-500/20 text-sm">
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-teal-400 to-indigo-700 rounded-xl flex items-center justify-center text-white font-bold group-hover:scale-105 transition-transform shadow-lg shadow-teal-400/20 text-sm">
                 {vendor?.shop_name?.charAt(0)?.toUpperCase() || 'V'}
               </div>
               <div className="hidden sm:block">
-                <p className={`text-xs font-black leading-none mb-0.5 italic truncate max-w-[120px] ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{vendor?.shop_name || "My Store"}</p>
-                <p className="text-[9px] font-black text-indigo-500 uppercase tracking-wider leading-none">Settings</p>
+                <p className={`text-xs font-semibold leading-none mb-0.5  truncate max-w-[120px] ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{vendor?.shop_name || "My Store"}</p>
+                <p className="text-[9px] font-semibold text-teal-400 uppercase tracking-wider leading-none">Settings</p>
               </div>
             </Link>
           </div>

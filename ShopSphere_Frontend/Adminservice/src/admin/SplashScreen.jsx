@@ -68,17 +68,17 @@ const SplashScreen = () => {
                 </div>
 
                 {/* Brand Name */}
-                <h1 className="text-4xl font-black tracking-tighter text-white mb-2">
-                    Shop<span className="bg-gradient-to-r from-violet-400 to-fuchsia-500 bg-clip-text text-transparent">Sphere</span>
+                <h1 className="text-4xl font-semibold tracking-normal text-white mb-2">
+                    Shop<span className="bg-gradient-to-r from-emerald-400 to-fuchsia-500 bg-clip-text text-transparent">Sphere</span>
                 </h1>
 
-                <p className="text-violet-300/40 text-sm font-medium tracking-[0.3em] uppercase">
+                <p className="text-emerald-300/40 text-sm font-medium tracking-normal uppercase">
                     Admin Portal
                 </p>
 
                 {/* Simple CSS Loading Bar */}
                 <div className="w-48 h-1 bg-white/5 rounded-full overflow-hidden mt-8">
-                    <div className="h-full bg-violet-500 animate-[loading_3s_ease-in-out_forwards]"></div>
+                    <div className="h-full bg-emerald-500 animate-[loading_3s_ease-in-out_forwards]"></div>
                 </div>
             </div>
 

@@ -75,20 +75,20 @@ const VendorRequests = () => {
             <div className="flex-1 flex flex-col min-w-0 transition-all duration-300">
                 <header className={`border-b px-8 h-20 flex items-center justify-between z-20 sticky top-0 transition-all duration-300 ${isDarkMode ? 'bg-[#0f172a]/80 border-slate-800 backdrop-blur-md' : 'bg-white border-slate-100 shadow-sm'}`}>
                     <div className="flex items-center gap-4">
-                        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className={`p-2 rounded-xl border transition-all ${isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white' : 'bg-white border-slate-200 text-slate-400 hover:text-indigo-600 shadow-sm'}`}>
+                        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className={`p-2 rounded-xl border transition-all ${isDarkMode ? 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white' : 'bg-white border-slate-200 text-slate-400 hover:text-blue-600 shadow-sm'}`}>
                             {isSidebarOpen ? <PanelLeftClose className="w-5 h-5" /> : <PanelLeftOpen className="w-5 h-5" />}
                         </button>
                         <div>
                             <div className="flex items-center gap-2">
-                                <h1 className={`text-lg font-black tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Onboarding Queue</h1>
-                                <span className={`text-[8px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-widest ${isDarkMode ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' : 'bg-amber-50 text-amber-600 border border-amber-100'}`}>Critical</span>
+                                <h1 className={`text-lg font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Onboarding Queue</h1>
+                                <span className={`text-[8px] font-semibold px-1.5 py-0.5 rounded-md uppercase tracking-normal ${isDarkMode ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' : 'bg-amber-50 text-amber-600 border border-amber-100'}`}>Critical</span>
                             </div>
-                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Verify and authorize new marketplace partners</p>
+                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-normal">Verify and authorize new marketplace partners</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-6">
                         <NotificationBell />
-                        <div className={`hidden lg:flex items-center border rounded-lg px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest gap-2 ${isDarkMode ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' : 'bg-slate-50 border-slate-200 text-slate-500'}`}>
+                        <div className={`hidden lg:flex items-center border rounded-lg px-3 py-1.5 text-[10px] font-bold uppercase tracking-normal gap-2 ${isDarkMode ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' : 'bg-slate-50 border-slate-200 text-slate-500'}`}>
                             <ShieldCheck className="w-3.5 h-3.5" /> Registry Protocol
                         </div>
                     </div>
@@ -98,8 +98,8 @@ const VendorRequests = () => {
                     <div className="max-w-7xl mx-auto space-y-8">
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                             {[
-                                { label: 'Pending Apps', value: pendingRequests.length, icon: UserPlus, color: 'indigo' },
-                                { label: 'Verification Rate', value: '94%', icon: Activity, color: 'violet' },
+                                { label: 'Pending Apps', value: pendingRequests.length, icon: UserPlus, color: 'blue' },
+                                { label: 'Verification Rate', value: '94%', icon: Activity, color: 'emerald' },
                                 { label: 'Security State', value: 'Nominal', icon: ShieldAlert, color: 'emerald' },
                                 { label: 'Node Session', value: 'Active', icon: Zap, color: 'amber' }
                             ].map((stat, i) => (
@@ -111,29 +111,29 @@ const VendorRequests = () => {
                                     className={`p-6 rounded-[2.5rem] border transition-all duration-300 group ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800 hover:border-slate-700 hover:bg-[#1e293b]/80' : 'bg-white border-slate-100 shadow-sm hover:shadow-xl'}`}
                                 >
                                     <div className="flex items-center gap-5">
-                                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all group-hover:scale-110 ${stat.color === 'indigo' ? (isDarkMode ? 'bg-indigo-500/10 text-indigo-400' : 'bg-indigo-50 text-indigo-600') :
-                                            stat.color === 'violet' ? (isDarkMode ? 'bg-violet-500/10 text-violet-400' : 'bg-violet-50 text-violet-600') :
+                                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all group-hover:scale-110 ${stat.color === 'blue' ? (isDarkMode ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-50 text-blue-600') :
+                                            stat.color === 'emerald' ? (isDarkMode ? 'bg-emerald-500/10 text-emerald-400' : 'bg-emerald-50 text-emerald-600') :
                                                 stat.color === 'emerald' ? (isDarkMode ? 'bg-emerald-500/10 text-emerald-400' : 'bg-emerald-50 text-emerald-600') :
                                                     (isDarkMode ? 'bg-amber-500/10 text-amber-400' : 'bg-amber-50 text-amber-600')
                                             }`}>
                                             <stat.icon className="w-6 h-6" />
                                         </div>
                                         <div>
-                                            <p className="text-[9px] font-black uppercase tracking-[2px] text-slate-500 mb-1">{stat.label}</p>
-                                            <p className={`text-2xl font-black italic tracking-tighter ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{stat.value}</p>
+                                            <p className="text-[9px] font-semibold uppercase tracking-normal text-slate-500 mb-1">{stat.label}</p>
+                                            <p className={`text-2xl font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{stat.value}</p>
                                         </div>
                                     </div>
                                 </motion.div>
                             ))}
                         </div>
 
-                        <div className={`rounded-[3rem] border overflow-hidden transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800 shadow-sm shadow-indigo-500/5' : 'bg-white border-slate-100 shadow-md'}`}>
+                        <div className={`rounded-[3rem] border overflow-hidden transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800 shadow-sm shadow-blue-500/5' : 'bg-white border-slate-100 shadow-md'}`}>
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left border-collapse">
                                     <thead className={`border-b transition-colors duration-300 ${isDarkMode ? 'bg-slate-900/40 border-slate-800' : 'bg-slate-50/50 border-slate-100'}`}>
                                         <tr>
                                             {['Transmission Identity', 'Entity Endpoint', 'Current Protocol', 'Registry Log', 'Operations'].map(h => (
-                                                <th key={h} className="px-10 py-6 text-[10px] font-black text-slate-500 uppercase tracking-[3px] italic">{h}</th>
+                                                <th key={h} className="px-10 py-6 text-[10px] font-semibold text-slate-500 uppercase tracking-normal">{h}</th>
                                             ))}
                                         </tr>
                                     </thead>
@@ -152,31 +152,31 @@ const VendorRequests = () => {
                                                         initial={{ opacity: 0, x: -10 }}
                                                         animate={{ opacity: 1, x: 0 }}
                                                         transition={{ delay: index * 0.05 }}
-                                                        className={`group transition-all duration-300 ${isDarkMode ? 'hover:bg-indigo-500/5' : 'hover:bg-indigo-50/50'}`}
+                                                        className={`group transition-all duration-300 ${isDarkMode ? 'hover:bg-blue-500/5' : 'hover:bg-blue-50/50'}`}
                                                     >
                                                         <td className="px-10 py-8">
                                                             <div className="flex items-center gap-6">
-                                                                <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center font-black text-xl transition-all duration-500 ${isDarkMode ? 'bg-[#0f172a] border-slate-800 text-indigo-400 group-hover:border-indigo-500 group-hover:scale-105' : 'bg-white border-slate-100 text-indigo-600 group-hover:scale-105 shadow-sm'}`}>
+                                                                <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center font-semibold text-xl transition-all duration-500 ${isDarkMode ? 'bg-[#0f172a] border-slate-800 text-blue-400 group-hover:border-blue-500 group-hover:scale-105' : 'bg-white border-slate-100 text-blue-600 group-hover:scale-105 shadow-sm'}`}>
                                                                     {(vendor.shop_name || '?').charAt(0).toUpperCase()}
                                                                 </div>
                                                                 <div>
-                                                                    <div className={`text-base font-black italic tracking-tighter ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{vendor.shop_name}</div>
-                                                                    <div className="text-[9px] text-slate-500 font-black uppercase tracking-[2px] mt-1">VID #{vendor.id}</div>
+                                                                    <div className={`text-base font-semibold tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{vendor.shop_name}</div>
+                                                                    <div className="text-[9px] text-slate-500 font-semibold uppercase tracking-normal mt-1">VID #{vendor.id}</div>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td className="px-10 py-8">
-                                                            <div className={`flex items-center gap-2.5 text-xs font-bold tracking-tight ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                                                            <div className={`flex items-center gap-2.5 text-xs font-bold tracking-normal ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                                                                 <Mail className="w-4 h-4 opacity-50" /> {vendor.user_email}
                                                             </div>
                                                         </td>
                                                         <td className="px-10 py-8">
-                                                            <span className="px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest border bg-amber-500/10 text-amber-500 border-amber-500/20 italic">
+                                                            <span className="px-4 py-2 rounded-xl text-[9px] font-semibold uppercase tracking-normal border bg-amber-500/10 text-amber-500 border-amber-500/20">
                                                                 {vendor.approval_status}
                                                             </span>
                                                         </td>
                                                         <td className="px-10 py-8">
-                                                            <div className={`flex items-center gap-2.5 text-xs font-bold tracking-tight ${isDarkMode ? 'text-slate-500' : 'text-slate-500'}`}>
+                                                            <div className={`flex items-center gap-2.5 text-xs font-bold tracking-normal ${isDarkMode ? 'text-slate-500' : 'text-slate-500'}`}>
                                                                 <Clock className="w-4 h-4 opacity-50" /> {new Date(vendor.created_at).toLocaleDateString()}
                                                             </div>
                                                         </td>
@@ -184,20 +184,20 @@ const VendorRequests = () => {
                                                             <div className="flex items-center gap-3">
                                                                 <button
                                                                     onClick={() => navigate(`/vendors/review/${vendor.id}`)}
-                                                                    className={`p-3 rounded-2xl transition-all border ${isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white hover:border-indigo-500/50' : 'bg-white border-slate-200 text-slate-400 hover:text-indigo-600 shadow-sm'}`}
+                                                                    className={`p-3 rounded-2xl transition-all border ${isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white hover:border-blue-500/50' : 'bg-white border-slate-200 text-slate-400 hover:text-blue-600 shadow-sm'}`}
                                                                     title="Inspect Profile"
                                                                 >
                                                                     <ArrowRight className="w-5 h-5" />
                                                                 </button>
                                                                 <button
                                                                     onClick={() => handleAction(vendor.id, 'Approved')}
-                                                                    className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all border shadow-lg shadow-emerald-500/5 ${isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-500 hover:text-white' : 'bg-emerald-50 text-emerald-600 border-emerald-100 hover:bg-emerald-600 hover:text-white'}`}
+                                                                    className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-[9px] font-semibold uppercase tracking-normal transition-all border shadow-lg shadow-emerald-500/5 ${isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-500 hover:text-white' : 'bg-emerald-50 text-emerald-600 border-emerald-100 hover:bg-emerald-600 hover:text-white'}`}
                                                                 >
                                                                     <CheckCircle className="w-4 h-4" /> Approve
                                                                 </button>
                                                                 <button
                                                                     onClick={() => handleAction(vendor.id, 'Rejected')}
-                                                                    className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all border shadow-lg shadow-rose-500/5 ${isDarkMode ? 'bg-rose-500/10 text-rose-400 border-rose-500/20 hover:bg-rose-500 hover:text-white' : 'bg-rose-50 text-rose-600 border-rose-100 hover:bg-rose-600 hover:text-white'}`}
+                                                                    className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-[9px] font-semibold uppercase tracking-normal transition-all border shadow-lg shadow-rose-500/5 ${isDarkMode ? 'bg-rose-500/10 text-rose-400 border-rose-500/20 hover:bg-rose-500 hover:text-white' : 'bg-rose-50 text-rose-600 border-rose-100 hover:bg-rose-600 hover:text-white'}`}
                                                                 >
                                                                     <XCircle className="w-4 h-4" /> Decline
                                                                 </button>
@@ -216,8 +216,8 @@ const VendorRequests = () => {
                                                             <div className={`w-28 h-28 rounded-[3.5rem] flex items-center justify-center mb-8 border transition-all duration-500 ${isDarkMode ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-100'}`}>
                                                                 <SearchX className="w-14 h-14 text-slate-300/30" />
                                                             </div>
-                                                            <h3 className={`text-xl font-black italic uppercase tracking-tighter ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Registry Empty</h3>
-                                                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-2 max-w-xs">No pending applications require governance event response at this timestamp.</p>
+                                                            <h3 className={`text-xl font-semibold uppercase tracking-normal ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Registry Empty</h3>
+                                                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-normal mt-2 max-w-xs">No pending applications require governance event response at this timestamp.</p>
                                                         </div>
                                                     </td>
                                                 </motion.tr>
@@ -227,10 +227,10 @@ const VendorRequests = () => {
                                 </table>
                             </div>
                             <div className={`px-10 py-8 flex items-center justify-between border-t transition-colors duration-300 ${isDarkMode ? 'bg-slate-900/30 border-slate-800' : 'bg-slate-50/50 border-slate-100'}`}>
-                                <div className="text-[9px] font-black text-slate-500 uppercase tracking-[4px]">
+                                <div className="text-[9px] font-semibold text-slate-500 uppercase tracking-normal">
                                     Registry Node Synchronized Node_01
                                 </div>
-                                <div className="flex items-center gap-4 text-[9px] font-black text-slate-500 tracking-[4px] uppercase">
+                                <div className="flex items-center gap-4 text-[9px] font-semibold text-slate-500 tracking-normal uppercase">
                                     Auth Secured <ShieldCheck className="w-4 h-4 text-emerald-500" />
                                 </div>
                             </div>

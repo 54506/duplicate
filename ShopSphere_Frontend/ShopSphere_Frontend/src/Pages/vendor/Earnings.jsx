@@ -59,32 +59,32 @@ export default function Earnings() {
   if (!summary && loading) {
     return (
       <div className={`flex flex-col items-center justify-center min-h-[60vh] transition-colors duration-300 ${isDarkMode ? 'bg-transparent' : 'bg-transparent'}`}>
-        <div className={`w-12 h-12 border-4 rounded-full animate-spin mb-4 ${isDarkMode ? 'border-white/5 border-t-indigo-500' : 'border-slate-200 border-t-indigo-600'}`}></div>
-        <p className={`text-[10px] font-black uppercase tracking-[4px] ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>Checking your balance...</p>
+        <div className={`w-12 h-12 border-4 rounded-full animate-spin mb-4 ${isDarkMode ? 'border-slate-800 border-t-teal-400' : 'border-slate-200 border-t-teal-500'}`}></div>
+        <p className={`text-[10px] font-semibold uppercase tracking-normal ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>Checking your balance...</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-8 md:space-y-12 animate-in fade-in duration-700 font-['Outfit']">
+    <div className="space-y-8 md:space-y-12 animate-in fade-in duration-700 font-['Inter']">
       <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
-          <h1 className={`text-3xl md:text-4xl font-black tracking-tighter flex items-center gap-4 italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-indigo-500/20">
+          <h1 className={`text-3xl md:text-4xl font-semibold tracking-normal flex items-center gap-4  uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-teal-500 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-teal-400/20">
               <FaFileInvoiceDollar size={22} />
             </div>
             Earnings & Money
           </h1>
-          <p className="text-[10px] font-black uppercase tracking-[4px] text-gray-500 mt-3 ml-1 flex items-center gap-2">
+          <p className="text-[10px] font-semibold uppercase tracking-normal text-gray-500 mt-3 ml-1 flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
             Manage your store profit
           </p>
         </div>
         <div className="flex gap-4 w-full md:w-auto">
-          <button className={`flex-1 md:flex-none flex items-center justify-center gap-3 px-6 md:px-8 py-4 text-white rounded-2xl text-[10px] font-black uppercase tracking-[3px] transition-all shadow-xl ${isDarkMode ? 'bg-indigo-600 hover:bg-indigo-500 shadow-indigo-900/40' : 'bg-slate-900 hover:bg-indigo-700 shadow-slate-200'}`}>
+          <button className={`flex-1 md:flex-none flex items-center justify-center gap-3 px-6 md:px-8 py-4 text-white rounded-2xl text-[10px] font-semibold uppercase tracking-normal transition-all shadow-xl ${isDarkMode ? 'bg-teal-500 hover:bg-teal-400 shadow-indigo-900/40' : 'bg-slate-900 hover:bg-indigo-700 shadow-slate-200'}`}>
             <FaWallet /> Withdraw Money
           </button>
-          <button className={`p-4 border rounded-2xl transition-all shadow-sm ${isDarkMode ? 'bg-white/5 border-white/5 text-slate-400 hover:text-white hover:bg-white/10' : 'bg-white border-slate-200 text-slate-500 hover:text-indigo-600 hover:bg-slate-50'}`}>
+          <button className={`p-4 border rounded-2xl transition-all shadow-sm ${isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-300 hover:text-white hover:bg-white/10' : 'bg-white border-slate-200 text-slate-500 hover:text-teal-500 hover:bg-slate-50'}`}>
             <FaDownload />
           </button>
         </div>
@@ -92,55 +92,55 @@ export default function Earnings() {
 
       {/* KPI BOXES */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-        <div className={`rounded-[32px] md:rounded-[40px] p-6 md:p-8 text-white relative overflow-hidden group border shadow-2xl transition-all duration-300 ${isDarkMode ? 'bg-indigo-600 border-indigo-400/20 shadow-indigo-900/40' : 'bg-indigo-500 border-indigo-400 shadow-indigo-100'}`}>
+        <div className={`rounded-[32px] md:rounded-[40px] p-6 md:p-8 text-white relative overflow-hidden group border shadow-2xl transition-all duration-300 ${isDarkMode ? 'bg-teal-500 border-indigo-400/20 shadow-indigo-900/40' : 'bg-teal-400 border-indigo-400 shadow-indigo-100'}`}>
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-          <p className="text-white/60 font-black text-[9px] uppercase tracking-[3px] mb-2 italic">Available Balance</p>
-          <h2 className="text-3xl md:text-4xl font-black tracking-tighter italic">₹{totalRevenue.toLocaleString()}</h2>
-          <div className="mt-6 flex items-center gap-2 text-[10px] bg-white/10 w-fit px-4 py-2 rounded-full backdrop-blur-md border border-white/10">
-            <FaArrowUp className="text-emerald-300" /> <span className="font-black">Ready to Withdraw</span>
+          <p className="text-white/60 font-semibold text-[9px] uppercase tracking-normal mb-2 ">Available Balance</p>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-normal ">₹{totalRevenue.toLocaleString()}</h2>
+          <div className="mt-6 flex items-center gap-2 text-[10px] bg-white/10 w-fit px-4 py-2 rounded-full backdrop-blur-md border border-slate-200">
+            <FaArrowUp className="text-emerald-300" /> <span className="font-semibold">Ready to Withdraw</span>
           </div>
         </div>
 
-        <div className={`rounded-[32px] md:rounded-[40px] p-6 md:p-8 border shadow-2xl relative overflow-hidden group transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-white/5' : 'bg-white border-slate-100'}`}>
-          <p className="text-gray-500 font-black text-[9px] uppercase tracking-[3px] mb-2 italic">Total Earned</p>
-          <h2 className={`text-3xl font-black tracking-tighter italic ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>₹{lifetimeEarnings.toLocaleString()}</h2>
-          <p className="text-[10px] font-black text-emerald-500 uppercase tracking-widest mt-2 flex items-center gap-2">
+        <div className={`rounded-[32px] md:rounded-[40px] p-6 md:p-8 border shadow-2xl relative overflow-hidden group transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800' : 'bg-white border-slate-100'}`}>
+          <p className="text-gray-500 font-semibold text-[9px] uppercase tracking-normal mb-2 ">Total Earned</p>
+          <h2 className={`text-3xl font-semibold tracking-normal  ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>₹{lifetimeEarnings.toLocaleString()}</h2>
+          <p className="text-[10px] font-semibold text-emerald-500 uppercase tracking-widest mt-2 flex items-center gap-2">
             <span className="w-1 h-1 bg-emerald-500 rounded-full"></span> Lifetime Profit
           </p>
         </div>
 
-        <div className={`rounded-[32px] md:rounded-[40px] p-6 md:p-8 border shadow-2xl relative overflow-hidden group transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-white/5' : 'bg-white border-slate-100'}`}>
-          <p className="text-gray-500 font-black text-[9px] uppercase tracking-[3px] mb-2 italic">Pending Payout</p>
-          <h2 className={`text-3xl font-black tracking-tighter italic ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>₹{pendingPayouts.toLocaleString()}</h2>
-          <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest mt-2 flex items-center gap-2">
+        <div className={`rounded-[32px] md:rounded-[40px] p-6 md:p-8 border shadow-2xl relative overflow-hidden group transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800' : 'bg-white border-slate-100'}`}>
+          <p className="text-gray-500 font-semibold text-[9px] uppercase tracking-normal mb-2 ">Pending Payout</p>
+          <h2 className={`text-3xl font-semibold tracking-normal  ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>₹{pendingPayouts.toLocaleString()}</h2>
+          <p className="text-[10px] font-semibold text-amber-500 uppercase tracking-widest mt-2 flex items-center gap-2">
             <span className="w-1 h-1 bg-amber-500 rounded-full animate-pulse"></span> Processing
           </p>
         </div>
 
-        <div className={`rounded-[32px] md:rounded-[40px] p-6 md:p-8 border shadow-2xl relative overflow-hidden group transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-white/5' : 'bg-white border-slate-100'}`}>
-          <p className="text-gray-500 font-black text-[9px] uppercase tracking-[3px] mb-2 italic">Hold Items</p>
-          <h2 className={`text-3xl font-black tracking-tighter italic ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>₹{unclearedBalance.toLocaleString()}</h2>
-          <p className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mt-2">7-Day Hold Period</p>
+        <div className={`rounded-[32px] md:rounded-[40px] p-6 md:p-8 border shadow-2xl relative overflow-hidden group transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800' : 'bg-white border-slate-100'}`}>
+          <p className="text-gray-500 font-semibold text-[9px] uppercase tracking-normal mb-2 ">Hold Items</p>
+          <h2 className={`text-3xl font-semibold tracking-normal  ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>₹{unclearedBalance.toLocaleString()}</h2>
+          <p className="text-[10px] font-semibold text-indigo-400 uppercase tracking-widest mt-2">7-Day Hold Period</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
         {/* GRAPH */}
-        <div className={`lg:col-span-2 rounded-[32px] md:rounded-[48px] border p-6 md:p-10 shadow-2xl relative overflow-hidden group transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-white/5' : 'bg-white border-slate-100'}`}>
+        <div className={`lg:col-span-2 rounded-[32px] md:rounded-[48px] border p-6 md:p-10 shadow-2xl relative overflow-hidden group transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800' : 'bg-white border-slate-100'}`}>
           <div className="relative">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 md:mb-10 gap-6">
               <div className="flex items-center gap-4">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${isDarkMode ? 'bg-indigo-500/10 text-indigo-400 border-indigo-500/10' : 'bg-indigo-50 text-indigo-600 border-indigo-100'}`}>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${isDarkMode ? 'bg-teal-400/10 text-indigo-400 border-teal-400/10' : 'bg-indigo-50 text-teal-500 border-indigo-100'}`}>
                   <FaChartPie size={18} />
                 </div>
-                <h3 className={`text-xl font-black tracking-tight italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Money Graph</h3>
+                <h3 className={`text-xl font-semibold tracking-normal  uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Money Graph</h3>
               </div>
-              <div className={`p-1.5 rounded-2xl border flex w-full sm:w-auto overflow-x-auto no-scrollbar transition-colors ${isDarkMode ? 'bg-[#0f172a] border-white/5' : 'bg-slate-50 border-slate-200'}`}>
+              <div className={`p-1.5 rounded-2xl border flex w-full sm:w-auto overflow-x-auto no-scrollbar transition-colors ${isDarkMode ? 'bg-[#0f172a] border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
                 {['today', 'weekly', 'monthly', 'yearly'].map(filter => (
                   <button
                     key={filter}
                     onClick={() => setTimeFilter(filter)}
-                    className={`flex-1 sm:flex-none px-4 md:px-6 py-2 rounded-xl text-[9px] font-black uppercase tracking-[2px] transition-all whitespace-nowrap ${timeFilter === filter ? (isDarkMode ? 'bg-indigo-600 text-white shadow-lg' : 'bg-white text-indigo-600 shadow-sm') : 'text-gray-500 hover:text-indigo-400'}`}
+                    className={`flex-1 sm:flex-none px-4 md:px-6 py-2 rounded-xl text-[9px] font-semibold uppercase tracking-normal transition-all whitespace-nowrap ${timeFilter === filter ? (isDarkMode ? 'bg-teal-500 text-white shadow-lg' : 'bg-white text-teal-500 shadow-sm') : 'text-gray-500 hover:text-indigo-400'}`}
                   >
                     {filter}
                   </button>
@@ -187,35 +187,35 @@ export default function Earnings() {
         </div>
 
         {/* ACTIVITY HISTORY */}
-        <div className={`rounded-[32px] md:rounded-[48px] border p-6 md:p-10 shadow-2xl relative overflow-hidden flex flex-col transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-white/5' : 'bg-white border-slate-100'}`}>
+        <div className={`rounded-[32px] md:rounded-[48px] border p-6 md:p-10 shadow-2xl relative overflow-hidden flex flex-col transition-all duration-300 ${isDarkMode ? 'bg-[#1e293b]/50 border-slate-800' : 'bg-white border-slate-100'}`}>
           <div className="flex items-center gap-4 mb-8">
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${isDarkMode ? 'bg-indigo-500/10 text-indigo-400 border-indigo-500/10' : 'bg-indigo-50 text-indigo-600 border-indigo-100'}`}>
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${isDarkMode ? 'bg-teal-400/10 text-indigo-400 border-teal-400/10' : 'bg-indigo-50 text-teal-500 border-indigo-100'}`}>
               <FaHistory size={18} />
             </div>
-            <h3 className={`text-xl font-black tracking-tight italic uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Recent Activity</h3>
+            <h3 className={`text-xl font-semibold tracking-normal  uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Recent Activity</h3>
           </div>
 
           <div className="flex-1 space-y-4 overflow-y-auto max-h-[500px] pr-2 custom-scrollbar">
             {transactions.length > 0 ? transactions.map((item, i) => (
-              <div key={item.id || i} className={`p-5 border-2 rounded-[28px] transition-all group flex items-center justify-between overflow-hidden ${isDarkMode ? 'bg-white/5 border-transparent hover:bg-white/10 hover:border-indigo-500/20' : 'bg-slate-50 border-slate-50 hover:bg-white hover:border-indigo-100 hover:shadow-sm'}`}>
+              <div key={item.id || i} className={`p-5 border-2 rounded-[28px] transition-all group flex items-center justify-between overflow-hidden ${isDarkMode ? 'bg-slate-900 border-transparent hover:bg-white/10 hover:border-teal-400/20' : 'bg-slate-50 border-slate-50 hover:bg-white hover:border-indigo-100 hover:shadow-sm'}`}>
                 <div className="flex items-center gap-4 truncate">
                   <div className={`w-10 h-10 rounded-2xl flex-shrink-0 flex items-center justify-center text-sm shadow-inner ${item.entry_type === 'PAYOUT' ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20' : 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'}`}>
                     {item.entry_type === 'PAYOUT' ? <FaExchangeAlt /> : <FaArrowUp />}
                   </div>
                   <div className="truncate">
-                    <p className={`text-xs font-black tracking-tight italic truncate uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{item.description}</p>
-                    <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mt-1.5">{item.date}</p>
+                    <p className={`text-xs font-semibold tracking-normal  truncate uppercase ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{item.description}</p>
+                    <p className="text-[8px] font-semibold text-gray-400 uppercase tracking-widest mt-1.5">{item.date}</p>
                   </div>
                 </div>
                 <div className="text-right flex-shrink-0 ml-3">
-                  <p className={`text-sm font-black italic ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>₹{parseFloat(item.net_amount || item.amount).toLocaleString()}</p>
-                  <span className={`text-[8px] font-black uppercase tracking-widest ${item.is_settled ? 'text-emerald-500' : 'text-amber-500'}`}>
+                  <p className={`text-sm font-semibold  ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>₹{parseFloat(item.net_amount || item.amount).toLocaleString()}</p>
+                  <span className={`text-[8px] font-semibold uppercase tracking-widest ${item.is_settled ? 'text-emerald-500' : 'text-amber-500'}`}>
                     {item.is_settled ? 'Success' : 'Pending'}
                   </span>
                 </div>
               </div>
             )) : (
-              <div className="text-center py-20 italic text-gray-600 text-[10px] font-black uppercase tracking-widest">
+              <div className="text-center py-20  text-gray-600 text-[10px] font-semibold uppercase tracking-widest">
                 History is empty
               </div>
             )}
