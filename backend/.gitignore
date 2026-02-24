@@ -45,6 +45,7 @@ create_admin.py
 runserver.py
 debug_email.py
 *.txt
+!requirements.txt
 
 # IDEs
 .vscode/
