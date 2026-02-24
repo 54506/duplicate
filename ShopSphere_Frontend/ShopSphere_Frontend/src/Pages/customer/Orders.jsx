@@ -810,7 +810,7 @@ function Orders() {
       toast.success("Review submitted successfully!");
       dispatch(fetchOrders());
       dispatch(fetchProducts());
-      navigate(`/product/${selectedProductId}`);
+      // navigate(`/product/${selectedProductId}`);
     } catch (err) {
       console.error("Submission error:", err);
       const errorMsg = err.response?.data?.error ||

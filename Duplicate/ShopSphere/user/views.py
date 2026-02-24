@@ -658,7 +658,7 @@ def my_orders(request):
     orders = Order.objects.filter(user=request.user).order_by('-created_at')
     
     if request.accepted_renderer.format == 'json':
-        serializer = OrderSerializer(orders, many=True)
+        serializer = OrderSerializer(orders, many=True, context={'request': request})
         return Response(serializer.data)
         
     return render(request, "my_orders.html", {"orders": orders})
